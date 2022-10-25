@@ -1,0 +1,4 @@
+enum IndicatorType{
+  center,
+  inStack,
+}
