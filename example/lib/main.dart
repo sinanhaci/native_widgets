@@ -1,13 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:native_widgets/enums/date_time_picker_type.dart';
-import 'package:native_widgets/enums/dialog_type.dart';
-import 'package:native_widgets/models/action_sheet_model.dart';
-import 'package:native_widgets/models/button_properties_model.dart';
-import 'package:native_widgets/models/date_time_picker_model.dart';
-import 'package:native_widgets/models/dialog_models.dart';
-import 'package:native_widgets/models/indicator_model.dart';
-import 'package:native_widgets/models/refresh_indicator_model.dart';
-import 'package:native_widgets/models/switch_model.dart';
 import 'package:native_widgets/native_widgets.dart';
 
 void main() {

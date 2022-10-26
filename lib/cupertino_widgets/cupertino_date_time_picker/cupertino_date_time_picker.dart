@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import '../../../constants/constants.dart';
 import '../../enums/date_time_picker_type.dart';
 import '../../models/date_time_picker_model.dart';
+import 'package:flutter/material.dart';
 
 class CupertinoDatePickerWidget extends StatelessWidget {
   final DateTimePickerModel constructors;
@@ -9,7 +10,9 @@ class CupertinoDatePickerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    var theme = Theme.of(context);
+    return Container(
+      color: theme.scaffoldBackgroundColor,
       height: 250,
       child: Stack(
         children: [
