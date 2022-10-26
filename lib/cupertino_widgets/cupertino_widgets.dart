@@ -6,7 +6,6 @@ import '../models/dialog_models.dart';
 import '../models/indicator_model.dart';
 import '../models/refresh_indicator_model.dart';
 import '../models/switch_model.dart';
-import '../native_widgets.dart';
 import 'cupertino_action_sheet/cupertino_action_sheet.dart';
 import 'cupertino_date_time_picker/cupertino_date_time_picker.dart';
 import 'cupertino_dialog/cupertino_dialog.dart';

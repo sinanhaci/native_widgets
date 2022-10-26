@@ -44,7 +44,7 @@ class AdaptiveWidgets extends StatelessWidget {
       body: nativeWidgets.nativeRefreshIndicator(
         constructors: RefreshIndicatorModel(
           onRefresh: ()async{
-            await Future.delayed(const Duration(seconds: 1));
+            await Future.delayed(const Duration(seconds: 2));
           },
           children: [
             const SizedBox(

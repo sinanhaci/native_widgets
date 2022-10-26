@@ -14,13 +14,9 @@ import 'models/switch_model.dart';
 class NativeWidgets<T> extends CupertinoWidgets{
   NativeWidgets(super.context);
 
-
-
-  
-
   Widget nativeSwitch({required SwitchModel constructors}) {
     switch (Platform.isIOS) {
-      case false:
+      case true:
         return cupertinoSwitch(constructors);
       default:
         return materialSwitch(constructors);
@@ -29,7 +25,7 @@ class NativeWidgets<T> extends CupertinoWidgets{
 
   Widget nativeIndicator({required IndicatorModel constructors}) {
     switch (Platform.isIOS) {
-      case false:
+      case true:
         return cupertinoIndicator(constructors);
       default:
         return materialIndicator(constructors);
@@ -38,7 +34,7 @@ class NativeWidgets<T> extends CupertinoWidgets{
 
   Future<T> nativeDialog({required DialogModel constructors}) async {
     switch (Platform.isIOS) {
-      case false:
+      case true:
         return await cupertinoDialog(constructors);
       default:
         return await materialDialog(constructors);
@@ -47,7 +43,7 @@ class NativeWidgets<T> extends CupertinoWidgets{
 
   Future<T> nativeActionSheet({required ActionSheetModel constructors}) async {
     switch (Platform.isIOS) {
-      case false:
+      case true:
         return await cupertinoActionSheet(constructors);
       default:
         return await materialActionSheet(constructors);
@@ -56,7 +52,7 @@ class NativeWidgets<T> extends CupertinoWidgets{
 
   Widget nativeRefreshIndicator({required RefreshIndicatorModel constructors}) {
     switch (Platform.isIOS) {
-      case false:
+      case true:
         return cupertinoRefreshIndicator(constructors);
       default:
         return materialRefreshIndicator(constructors);
@@ -66,7 +62,7 @@ class NativeWidgets<T> extends CupertinoWidgets{
   Future<DateTime?> nativeDateTimePicker(
       {required DateTimePickerModel constructors}) async {
     switch (Platform.isIOS) {
-      case false:
+      case true:
         return await cupertinoDateTimePicker(constructors);
       default:
         return await materialDateTimePickerWidget(constructors);

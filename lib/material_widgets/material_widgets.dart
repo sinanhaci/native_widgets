@@ -7,7 +7,6 @@ import '../models/dialog_models.dart';
 import '../models/indicator_model.dart';
 import '../models/refresh_indicator_model.dart';
 import '../models/switch_model.dart';
-import '../native_widgets.dart';
 import 'material_action_sheet/material_action_sheet.dart';
 import 'material_date_time_picker/material_date_time_picker.dart';
 import 'material_dialog/material_dialog.dart';
@@ -36,7 +35,7 @@ class MaterialWidgets<T> {
   }
 
   Future<T> materialActionSheet(ActionSheetModel constructors) async {
-    return await showDialog(
+    return await showModalBottomSheet(
       context: context,
       builder: (_) {
         return MaterialActionSheet(constructors: constructors);
