@@ -27,8 +27,8 @@ class MaterialDialog extends StatelessWidget {
       case DialogType.okCancel:
       case DialogType.inputOkCancel:
         return [
-          MaterialDialogButton(constructors: constructors.cancelButtonProperties),
-          MaterialDialogButton(constructors: constructors.okButtonProperties!)
+          MaterialDialogButton(constructors: constructors.cancelButtonProperties!),
+          MaterialDialogButton(constructors: constructors.okButtonProperties)
         ];
     }
   }
