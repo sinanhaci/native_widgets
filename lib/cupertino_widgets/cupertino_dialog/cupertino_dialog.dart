@@ -27,8 +27,8 @@ class CupertinoDialog extends StatelessWidget {
       case DialogType.okCancel:
       case DialogType.inputOkCancel:
         return [
-          CupertinoDialogButton(constructors: constructors.cancelButtonProperties),
-          CupertinoDialogButton(constructors: constructors.okButtonProperties!)
+          CupertinoDialogButton(constructors: constructors.cancelButtonProperties!),
+          CupertinoDialogButton(constructors: constructors.okButtonProperties)
         ];
     }
   }
