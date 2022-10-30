@@ -14,9 +14,18 @@ class MaterialIndicatorWidget extends StatelessWidget {
   Widget _getWidgetByIndicatorType() {
     switch (constructors.indicatorType) {
       case IndicatorType.center:
-        return Center(child:CircularProgressIndicator(backgroundColor: constructors.color));
+        return Center(
+            child:
+                CircularProgressIndicator(backgroundColor: constructors.color)); 
       case IndicatorType.inStack:
-        return Positioned.fill(child: Center(child: CircularProgressIndicator(backgroundColor: constructors.color)));
+        return Positioned.fill(
+          child: Container(
+            color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.25),
+            child: Center(
+              child: CircularProgressIndicator(backgroundColor: constructors.color),
+            ),
+          ),
+        );
     }
   }
 }
