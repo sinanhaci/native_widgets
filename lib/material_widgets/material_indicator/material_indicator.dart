@@ -8,10 +8,10 @@ class MaterialIndicatorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _getWidgetByIndicatorType();
+    return _getWidgetByIndicatorType(context);
   }
 
-  Widget _getWidgetByIndicatorType() {
+  Widget _getWidgetByIndicatorType(BuildContext context) {
     switch (constructors.indicatorType) {
       case IndicatorType.center:
         return Center(

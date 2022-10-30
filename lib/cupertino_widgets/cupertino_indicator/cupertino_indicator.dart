@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../../enums/indicator_type.dart';
 import '../../models/indicator_model.dart';
@@ -9,10 +10,10 @@ class CupertinoIndicatorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _getWidgetByIndicatorType();
+    return _getWidgetByIndicatorType(context);
   }
 
-  Widget _getWidgetByIndicatorType() {
+  Widget _getWidgetByIndicatorType(BuildContext context) {
     switch (constructors.indicatorType) {
       case IndicatorType.center:
         return Center(
