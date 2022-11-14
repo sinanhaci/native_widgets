@@ -17,7 +17,7 @@ class MaterialActionSheet extends StatelessWidget {
       ...constructors.actions
           .map((e) => ListTile(
                 onTap: e.onPress,
-                title: Text(e.buttonText),
+                title: Text(e.buttonText,style: e.style),
                 leading:e.icon == null ? null : Icon(e.icon),
               ))
           .toList()
