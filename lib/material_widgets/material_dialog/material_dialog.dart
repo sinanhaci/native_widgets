@@ -9,13 +9,14 @@ class MaterialDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
     _assert();
     return AlertDialog(
         actionsAlignment: MainAxisAlignment.end,
         title: Text(
           constructors.title,
         ),
-        content: _getContentWidgetByDialogType(),
+        content: _getContentWidgetByDialogType(theme),
         actions: _getActionWidgetsByDialogType());
   }
 
@@ -33,11 +34,11 @@ class MaterialDialog extends StatelessWidget {
     }
   }
 
-  Widget _getContentWidgetByDialogType() {
+  Widget _getContentWidgetByDialogType(ThemeData theme) {
     switch (constructors.dialogType) {
       case DialogType.ok:
       case DialogType.okCancel:
-        return Text(constructors.content);
+        return Text(constructors.content,style: theme.textTheme.headline6!,);
       case DialogType.inputOk:
       case DialogType.inputOkCancel:
         return Column(
@@ -46,6 +47,7 @@ class MaterialDialog extends StatelessWidget {
           children: [
             Text(
               constructors.content,
+              style: theme.textTheme.headline6!,
             ),
             const SizedBox(
               height: 10,
