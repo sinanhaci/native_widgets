@@ -3,8 +3,9 @@ import '../../enums/indicator_type.dart';
 import '../../models/indicator_model.dart';
 
 class MaterialIndicatorWidget extends StatelessWidget {
-  final IndicatorModel constructors;
-  const MaterialIndicatorWidget({super.key, required this.constructors});
+  final CustomIndicatorModel constructors;
+  final CustomIndicatorTheme? theme;
+  const MaterialIndicatorWidget({super.key, required this.constructors,this.theme});
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +17,13 @@ class MaterialIndicatorWidget extends StatelessWidget {
       case IndicatorType.center:
         return Center(
             child:
-                CircularProgressIndicator(backgroundColor: constructors.color)); 
+                CircularProgressIndicator(backgroundColor: theme?.color)); 
       case IndicatorType.inStack:
         return Positioned.fill(
           child: Container(
-            color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.25),
+            color: theme?.inStackBackgroundColor ??  Theme.of(context).scaffoldBackgroundColor.withOpacity(0.25),
             child: Center(
-              child: CircularProgressIndicator(backgroundColor: constructors.color),
+              child: CircularProgressIndicator(backgroundColor: theme?.color),
             ),
           ),
         );

@@ -14,23 +14,22 @@ import 'cupertino_refresh_indicator/cupertino_refresh_indicator.dart';
 import 'cupertino_switch/cupertino_switch.dart';
 
 class CupertinoWidgets<T> extends MaterialWidgets{
-  CupertinoWidgets(super.context);
-
+  CupertinoWidgets(super.context, {super.switchTheme,super.indicatorTheme,super.buttonTheme,super.actionSheetTheme});
 
   
-  Widget cupertinoSwitch(SwitchModel constructors) {
-    return CupertinoSwitchWidget(constructors: constructors);
+  Widget cupertinoSwitch(CustomSwitchModel constructors) {
+    return CupertinoSwitchWidget(constructors: constructors,theme: switchTheme,);
   }
 
-  Widget cupertinoIndicator(IndicatorModel constructors) {
-    return CupertinoIndicatorWidget(constructors: constructors);
+  Widget cupertinoIndicator(CustomIndicatorModel constructors) {
+    return CupertinoIndicatorWidget(constructors: constructors,theme: indicatorTheme,);
   }
 
   Future<T> cupertinoDialog(DialogModel constructors) async {
     return await showCupertinoDialog(
       context: context,
       builder: (_) {
-        return CupertinoDialog(constructors: constructors);
+        return CupertinoDialog(constructors: constructors,theme:buttonTheme);
       },
     );
   }

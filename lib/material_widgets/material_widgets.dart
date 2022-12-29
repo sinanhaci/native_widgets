@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/action_sheet_model.dart';
+import '../models/button_properties_model.dart';
 import '../models/date_time_picker_model.dart';
 import '../models/dialog_models.dart';
 import '../models/indicator_model.dart';
@@ -16,20 +17,26 @@ import 'material_switch/material_switch.dart';
 
 class MaterialWidgets<T> {
   BuildContext context;
-  MaterialWidgets(this.context);
-  Widget materialSwitch(SwitchModel constructors) {
+  CustomSwitchTheme? switchTheme;
+  CustomIndicatorTheme? indicatorTheme;
+  CustomButtonTheme? buttonTheme;
+  CustomActionSheetTheme? actionSheetTheme;
+  MaterialWidgets(this.context,{this.switchTheme,this.indicatorTheme,this.buttonTheme,this.actionSheetTheme});
+
+
+  Widget materialSwitch(CustomSwitchModel constructors) {
     return MaterialSwitchWidget(constructors: constructors);
   }
 
-  Widget materialIndicator(IndicatorModel constructors) {
-    return MaterialIndicatorWidget(constructors: constructors);
+  Widget materialIndicator(CustomIndicatorModel constructors) {
+    return MaterialIndicatorWidget(constructors: constructors,theme: indicatorTheme);
   }
 
   Future<T> materialDialog(DialogModel constructors) async {
     return await showDialog(
       context: context,
       builder: (_) {
-        return MaterialDialog(constructors: constructors);
+        return MaterialDialog(constructors: constructors,theme: buttonTheme);
       },
     );
   }
@@ -38,7 +45,7 @@ class MaterialWidgets<T> {
     return await showModalBottomSheet(
       context: context,
       builder: (_) {
-        return MaterialActionSheet(constructors: constructors);
+        return MaterialActionSheet(constructors: constructors,theme: actionSheetTheme,);
       },
     );
   }

@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
+import 'package:native_widgets/models/button_properties_model.dart';
 import '../../enums/dialog_type.dart';
 import '../../models/dialog_models.dart';
 import '../../widgets/buttons.dart';
 
 class CupertinoDialog extends StatelessWidget {
   final DialogModel constructors;
-  const CupertinoDialog({super.key, required this.constructors});
+  final CustomButtonTheme? theme;
+  const CupertinoDialog({super.key, required this.constructors,this.theme});
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +25,12 @@ class CupertinoDialog extends StatelessWidget {
     switch (constructors.dialogType) {
       case DialogType.ok:
       case DialogType.inputOk:
-        return [CupertinoDialogButton(constructors: constructors.okButtonProperties)];
+        return [CupertinoDialogButton(constructors: constructors.okButtonProperties,theme: theme,)];
       case DialogType.okCancel:
       case DialogType.inputOkCancel:
         return [
-          CupertinoDialogButton(constructors: constructors.cancelButtonProperties!),
-          CupertinoDialogButton(constructors: constructors.okButtonProperties)
+          CupertinoDialogButton(constructors: constructors.cancelButtonProperties!,theme:theme),
+          CupertinoDialogButton(constructors: constructors.okButtonProperties,theme:theme)
         ];
     }
   }

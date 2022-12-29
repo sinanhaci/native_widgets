@@ -1,20 +1,23 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class SwitchModel{
+class CustomSwitchModel{
   final void Function(bool)? onChanged;
   final bool value;
-  final Color? activeColor;
   final DragStartBehavior dragStartBehavior;
-  final Color? thumbColor;
-  final Color? trackColor;
-  const SwitchModel({
+  const CustomSwitchModel({
     Key? key,
     this.onChanged,
     required this.value,
-    this.activeColor,
     this.dragStartBehavior = DragStartBehavior.start,
-    this.thumbColor,
-    this.trackColor,
   });
+}
+
+
+class CustomSwitchTheme{
+  final Color? activeColor;
+  final Color? thumbColor;
+  final Color? trackColor;
+
+  CustomSwitchTheme({this.activeColor, this.thumbColor, this.trackColor});
 }

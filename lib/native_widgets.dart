@@ -23,9 +23,10 @@ export 'enums/indicator_type.dart';
 
 
 class NativeWidgets<T> extends CupertinoWidgets{
-  NativeWidgets(super.context);
+  NativeWidgets(super.context, {super.switchTheme,super.buttonTheme,super.indicatorTheme,super.actionSheetTheme});
 
-  Widget nativeSwitch({required SwitchModel constructors}) {
+  
+  Widget nativeSwitch({required CustomSwitchModel constructors}) {
     switch (Platform.isIOS) {
       case true:
         return cupertinoSwitch(constructors);
@@ -34,7 +35,7 @@ class NativeWidgets<T> extends CupertinoWidgets{
     }
   }
 
-  Widget nativeIndicator({required IndicatorModel constructors}) {
+  Widget nativeIndicator({required CustomIndicatorModel constructors}) {
     switch (Platform.isIOS) {
       case true:
         return cupertinoIndicator(constructors);

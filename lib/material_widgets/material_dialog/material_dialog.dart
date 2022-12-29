@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import '../../enums/dialog_type.dart';
+import '../../models/button_properties_model.dart';
 import '../../models/dialog_models.dart';
 import '../../widgets/buttons.dart';
 
 class MaterialDialog extends StatelessWidget {
   final DialogModel constructors;
-  const MaterialDialog({super.key, required this.constructors});
+  final CustomButtonTheme? theme;
+  const MaterialDialog({super.key, required this.constructors,this.theme});
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +25,12 @@ class MaterialDialog extends StatelessWidget {
     switch (constructors.dialogType) {
       case DialogType.ok:
       case DialogType.inputOk:
-        return [MaterialDialogButton(constructors: constructors.okButtonProperties)];
+        return [MaterialDialogButton(constructors: constructors.okButtonProperties,theme: theme,)];
       case DialogType.okCancel:
       case DialogType.inputOkCancel:
         return [
-          MaterialDialogButton(constructors: constructors.cancelButtonProperties!),
-          MaterialDialogButton(constructors: constructors.okButtonProperties)
+          MaterialDialogButton(constructors: constructors.cancelButtonProperties!,theme:theme),
+          MaterialDialogButton(constructors: constructors.okButtonProperties,theme:theme)
         ];
     }
   }

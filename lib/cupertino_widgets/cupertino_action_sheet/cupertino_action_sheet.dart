@@ -4,13 +4,14 @@ import '../../widgets/buttons.dart';
 
 class CupertinoActionSheetWidget extends StatelessWidget {
   final ActionSheetModel constructors;
-  const CupertinoActionSheetWidget({super.key, required this.constructors});
+  final CustomActionSheetTheme? theme;
+  const CupertinoActionSheetWidget({super.key, required this.constructors,this.theme});
 
   @override
   Widget build(BuildContext context) {
     return CupertinoActionSheet(
-      message: _getTextWidgetByConstructors(constructors.content),
-      title: _getTextWidgetByConstructors(constructors.title),
+      message: _getTextWidgetByConstructors(constructors.content,theme?.iosContentTheme),
+      title: _getTextWidgetByConstructors(constructors.title,theme?.iosTitleTheme),
       cancelButton: _getCancelButtonByConstructors(context),
       actions: constructors.actions
           .map((element) => CupertinoActionSheetButton(
@@ -20,19 +21,17 @@ class CupertinoActionSheetWidget extends StatelessWidget {
     );
   }
 
-  _getTextWidgetByConstructors(String? param) {
-    return param == null ? null : Text(param);
+  _getTextWidgetByConstructors(String? param,TextStyle? style) {
+    return param == null ? null : Text(param,style: style);
   }
 
   _getCancelButtonByConstructors(BuildContext context) {
-    return constructors.defaultButtonProperties == null
-        ? CupertinoActionSheetAction(
+    return CupertinoActionSheetAction(
             key: const Key('Default Button'),
             onPressed: () => Navigator.pop(context),
             isDefaultAction: true,
-            child: const Text('Cancel',style: TextStyle(color: CupertinoColors.systemRed)),
-          )
-        : CupertinoActionSheetButton(
-            constructors: constructors.defaultButtonProperties!);
+            child: Text('Cancel',style: theme?.iosCancelButtonTheme),
+          );
+       
   }
 }

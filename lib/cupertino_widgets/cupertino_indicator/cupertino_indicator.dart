@@ -5,8 +5,9 @@ import '../../enums/indicator_type.dart';
 import '../../models/indicator_model.dart';
 
 class CupertinoIndicatorWidget extends StatelessWidget {
-  final IndicatorModel constructors;
-  const CupertinoIndicatorWidget({super.key, required this.constructors});
+  final CustomIndicatorModel constructors;
+  final CustomIndicatorTheme? theme;
+  const CupertinoIndicatorWidget({super.key, required this.constructors,this.theme});
 
   @override
   Widget build(BuildContext context) {
@@ -17,13 +18,13 @@ class CupertinoIndicatorWidget extends StatelessWidget {
     switch (constructors.indicatorType) {
       case IndicatorType.center:
         return Center(
-            child: CupertinoActivityIndicator(color: constructors.color));
+            child: CupertinoActivityIndicator(color: theme?.color));
       case IndicatorType.inStack:
         return Positioned.fill(
           child: Container(
-            color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.25),
+            color: theme?.inStackBackgroundColor ??  Theme.of(context).scaffoldBackgroundColor.withOpacity(0.25),
             child: Center(
-              child: CupertinoActivityIndicator(color: constructors.color),
+              child: CupertinoActivityIndicator(color: theme?.color),
             ),
           ),
         );

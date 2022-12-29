@@ -26,7 +26,9 @@ class AdaptiveWidgets extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final NativeWidgets nativeWidgets = NativeWidgets(context);
+    final NativeWidgets nativeWidgets = NativeWidgets(context,buttonTheme: CustomButtonTheme(
+
+    ));
     return Scaffold(
       appBar: AppBar(
         title: const Text('Adaptive Widgets'),
@@ -126,14 +128,13 @@ class AdaptiveWidgets extends StatelessWidget {
               },
             ),
             nativeWidgets.nativeSwitch(
-              constructors: SwitchModel(
-                activeColor: Colors.blue,
+              constructors: CustomSwitchModel(
                 value: true,
                 onChanged: (value){}
               )
             ),
             nativeWidgets.nativeIndicator(
-              constructors: IndicatorModel()
+              constructors: CustomIndicatorModel()
             ),
            _button(
               title: 'Date Time Picker',

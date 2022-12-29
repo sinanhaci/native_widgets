@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 import '../../models/action_sheet_model.dart';
+import '../../models/button_properties_model.dart';
 
 class MaterialActionSheet extends StatelessWidget {
   final ActionSheetModel constructors;
-  const MaterialActionSheet({super.key, required this.constructors});
+  final CustomActionSheetTheme? theme;
+  const MaterialActionSheet({super.key, required this.constructors,this.theme});
 
   @override
   Widget build(BuildContext context) {
     var content = [
       if(constructors.title != null || constructors.content != null)
         ListTile(
-          title: _getTextWidgetByConstructors(constructors.title),
-          subtitle: _getTextWidgetByConstructors(constructors.content),
+          title: _getTextWidgetByConstructors(constructors.title,theme?.androidTitleTheme),
+          subtitle: _getTextWidgetByConstructors(constructors.content,theme?.androidContentTheme),
         ),
       const Divider(),
       ...constructors.actions
           .map((e) => ListTile(
                 onTap: e.onPress,
-                title: Text(e.buttonText),
-                leading:e.icon == null ? null : Icon(e.icon),
+                title: Text(e.buttonText, style:e.isDefaultAction ? theme?.androidDefaultTheme : e.isDestructiveAction ? theme?.androidDestructiveTheme : theme?.androidActionTheme),
+                leading:e.icon == null ? null : Icon(e.icon,color:e.isDefaultAction ? theme?.androidDefaultTheme?.color : e.isDestructiveAction ? theme?.androidDestructiveTheme?.color : theme?.androidActionTheme?.color),
               ))
           .toList()
     ];
@@ -30,8 +32,8 @@ class MaterialActionSheet extends StatelessWidget {
     );
   }
 
-  _getTextWidgetByConstructors(String? param) {
-    return param == null ? null : Text(param);
+  _getTextWidgetByConstructors(String? param,TextStyle? style) {
+    return param == null ? null : Text(param,style: style);
   }
 
 }
