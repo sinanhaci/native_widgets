@@ -35,7 +35,7 @@ class CupertinoDatePickerWidget extends StatelessWidget {
             right: 0,
             top: 0,
             child: CupertinoButton(
-              child: const Text('Done'),
+              child: const Text('Tamam'),
               onPressed: () {
                 Navigator.pop(context, constructors.time);
               },
