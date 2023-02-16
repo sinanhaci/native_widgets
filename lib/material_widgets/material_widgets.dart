@@ -25,7 +25,7 @@ class MaterialWidgets<T> {
 
 
   Widget materialSwitch(CustomSwitchModel constructors) {
-    return MaterialSwitchWidget(constructors: constructors);
+    return MaterialSwitchWidget(constructors: constructors,theme: switchTheme);
   }
 
   Widget materialIndicator(CustomIndicatorModel constructors) {
