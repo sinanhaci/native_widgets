@@ -12,12 +12,12 @@ class MaterialSwitchWidget extends StatelessWidget {
       onChanged: constructors.onChanged,
       value: constructors.value,
       dragStartBehavior: constructors.dragStartBehavior,
-      activeColor: widget.theme?.activeColor,
+      activeColor: theme?.activeColor,
       trackColor: MaterialStateProperty.resolveWith((states) =>
           states.contains(MaterialState.selected)
-              ? widget.theme?.activeColor
-              : widget.theme?.trackColor),
-      thumbColor: MaterialStateProperty.all(widget.theme?.thumbColor),
+              ? theme?.activeColor
+              : theme?.trackColor),
+      thumbColor: MaterialStateProperty.all(theme?.thumbColor),
     );
   }
 }
