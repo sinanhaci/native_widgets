@@ -38,7 +38,7 @@ class CupertinoWidgets<T> extends MaterialWidgets{
     return await showCupertinoModalPopup(
       context: context,
       builder: (_) {
-        return CupertinoActionSheetWidget(constructors: constructors);
+        return CupertinoActionSheetWidget(constructors: constructors,theme: actionSheetTheme,);
       },
     );
   }
