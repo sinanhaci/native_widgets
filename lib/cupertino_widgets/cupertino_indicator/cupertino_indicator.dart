@@ -1,13 +1,10 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
 import '../../enums/indicator_type.dart';
-import '../../models/indicator_model.dart';
+import '../../properties/progress_indicator_properties.dart';
 
 class CupertinoIndicatorWidget extends StatelessWidget {
-  final CustomIndicatorModel constructors;
-  final CustomIndicatorTheme? theme;
-  const CupertinoIndicatorWidget({super.key, required this.constructors,this.theme});
+  final ProgressIndicatorProperties properties;
+  const CupertinoIndicatorWidget({super.key, required this.properties});
 
   @override
   Widget build(BuildContext context) {
@@ -15,16 +12,15 @@ class CupertinoIndicatorWidget extends StatelessWidget {
   }
 
   Widget _getWidgetByIndicatorType(BuildContext context) {
-    switch (constructors.indicatorType) {
-      case IndicatorType.center:
-        return Center(
-            child: CupertinoActivityIndicator(color: theme?.color));
-      case IndicatorType.inStack:
+    switch (properties.indicatorType) {
+      case ProgressType.center:
+        return Center(child: CupertinoActivityIndicator(color: properties.style?.color,radius: properties.style?.radius ?? 10));
+      case ProgressType.inStack:
         return Positioned.fill(
           child: Container(
-            color: theme?.inStackBackgroundColor ??  Theme.of(context).scaffoldBackgroundColor.withOpacity(0.25),
+            color: properties.style?.inStackBackgroundColor ??  CupertinoTheme.of(context).scaffoldBackgroundColor.withOpacity(0.25),
             child: Center(
-              child: CupertinoActivityIndicator(color: theme?.color),
+              child: CupertinoActivityIndicator(color: properties.style?.color,radius: properties.style?.radius ?? 10),
             ),
           ),
         );

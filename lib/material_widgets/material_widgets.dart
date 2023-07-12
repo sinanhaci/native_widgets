@@ -1,13 +1,12 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_properties_first
 import 'package:flutter/material.dart';
-
-import '../models/action_sheet_model.dart';
-import '../models/button_properties_model.dart';
-import '../models/date_time_picker_model.dart';
-import '../models/dialog_models.dart';
-import '../models/indicator_model.dart';
-import '../models/refresh_indicator_model.dart';
-import '../models/switch_model.dart';
+import '../manager/widgets_manager.dart';
+import '../properties/action_sheet_properties.dart';
+import '../properties/date_picker_properties.dart';
+import '../properties/dialog_properties.dart';
+import '../properties/progress_indicator_properties.dart';
+import '../properties/refresh_indicator_model.dart';
+import '../properties/switch_properties.dart';
 import 'material_action_sheet/material_action_sheet.dart';
 import 'material_date_time_picker/material_date_time_picker.dart';
 import 'material_dialog/material_dialog.dart';
@@ -15,48 +14,46 @@ import 'material_indicator/material_indicator.dart';
 import 'material_refresh_indicator/material_refresh_indicator.dart';
 import 'material_switch/material_switch.dart';
 
-class MaterialWidgets<T> {
-  BuildContext context;
-  CustomSwitchTheme? switchTheme;
-  CustomIndicatorTheme? indicatorTheme;
-  CustomButtonTheme? buttonTheme;
-  CustomActionSheetTheme? actionSheetTheme;
-  MaterialWidgets(this.context,{this.switchTheme,this.indicatorTheme,this.buttonTheme,this.actionSheetTheme});
+class MaterialWidgets<T> extends WidgetsManager{
 
-
-  Widget materialSwitch(CustomSwitchModel constructors) {
-    return MaterialSwitchWidget(constructors: constructors,theme: switchTheme);
+  @override
+  Widget customSwitch(SwitchProperties properties) {
+    return MaterialSwitchWidget(properties: properties);
   }
 
-  Widget materialIndicator(CustomIndicatorModel constructors) {
-    return MaterialIndicatorWidget(constructors: constructors,theme: indicatorTheme);
+  @override
+  Widget customIndicator(ProgressIndicatorProperties properties) {
+    return MaterialIndicatorWidget(properties: properties);
   }
 
-  Future<T> materialDialog(DialogModel constructors) async {
+  @override
+  Future<T> customDialog(DialogProperties properties,BuildContext context) async {
     return await showDialog(
       context: context,
       builder: (_) {
-        return MaterialDialog(constructors: constructors,theme: buttonTheme);
+        return MaterialDialog(properties: properties);
       },
     );
   }
 
-  Future<T> materialActionSheet(ActionSheetModel constructors) async {
+  @override
+  Future<T> customActionSheet(ActionSheetProperties properties,BuildContext context) async {
     return await showModalBottomSheet(
       context: context,
       builder: (_) {
-        return MaterialActionSheet(constructors: constructors,theme: actionSheetTheme,);
+        return MaterialActionSheet(properties: properties);
       },
     );
   }
 
-  Widget materialRefreshIndicator(RefreshIndicatorModel constructors) {
-    return MaterialRefreshIndicator(constructors: constructors);
+  @override
+  Widget customRefreshIndicator(RefreshIndicatorProperties properties) {
+    return MaterialRefreshIndicator(properties: properties);
   }
 
-  Future<DateTime?> materialDateTimePickerWidget(DateTimePickerModel constructors) async {
-    var dateTimePicker = MaterialDateTimePickerWidget(
-        constructors: constructors, context: context);
+  @override
+  Future<DateTime?> customDatePicker(DatePickerProperties properties,BuildContext context) async {
+    var dateTimePicker = MaterialDateTimePickerWidget(properties: properties, context: context);
     return await dateTimePicker.materialDateTimePickerWidget();
   }
 }

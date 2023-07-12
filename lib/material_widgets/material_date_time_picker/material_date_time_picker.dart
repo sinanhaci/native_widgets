@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import '../../constants/constants.dart';
 import '../../enums/date_time_picker_type.dart';
-import '../../models/date_time_picker_model.dart';
+import '../../properties/date_picker_properties.dart';
 
 class MaterialDateTimePickerWidget {
-  final DateTimePickerModel constructors;
+  final DatePickerProperties properties;
   final BuildContext context;
   MaterialDateTimePickerWidget({
-    required this.constructors,
+    required this.properties,
     required this.context
   });
 
 
   Future<DateTime?> materialDateTimePickerWidget() async {
-    switch (constructors.pickerType) {
+    switch (properties.pickerType) {
       case DateTimePickerType.date:
         return await _materialDatePicker();
       case DateTimePickerType.time:
@@ -32,12 +32,12 @@ class MaterialDateTimePickerWidget {
         return child!;
       }),
       context: context,
-      initialDate: constructors.initialDateTime ?? time,
-      firstDate: constructors.minimumDate ?? DateTime.parse(Constants.minimumDateTimeString),
-      lastDate: constructors.maximumDate ?? DateTime.parse(Constants.maximumDateTimeString),
+      initialDate: properties.initialDateTime ?? time,
+      firstDate: properties.minimumDate ?? DateTime.parse(Constants.minimumDateTimeString),
+      lastDate: properties.maximumDate ?? DateTime.parse(Constants.maximumDateTimeString),
       initialDatePickerMode: DatePickerMode.day,
     );
-    if(result != null) constructors.time = result;
+    if(result != null) properties.time = result;
     return result != null ? await _materialTimePicker() : null;
 
   }
@@ -48,19 +48,19 @@ class MaterialDateTimePickerWidget {
         return child!;
       }),
       context: context,
-      initialDate: constructors.initialDateTime ?? DateTime.now(),
-      firstDate: constructors.minimumDate ?? DateTime.parse(Constants.minimumDateTimeString),
-      lastDate: constructors.maximumDate ?? DateTime.parse(Constants.maximumDateTimeString),
+      initialDate: properties.initialDateTime ?? DateTime.now(),
+      firstDate: properties.minimumDate ?? DateTime.parse(Constants.minimumDateTimeString),
+      lastDate: properties.maximumDate ?? DateTime.parse(Constants.maximumDateTimeString),
       initialDatePickerMode: DatePickerMode.day,
     );
-    if(result != null) constructors.time = result;
+    if(result != null) properties.time = result;
     return result;
   }
 
   Future<DateTime?> _materialTimePicker() async {
     var result = await showTimePicker(
       context: context,
-      initialTime: TimeOfDay(hour: constructors.time.hour, minute: constructors.time.minute),
+      initialTime: TimeOfDay(hour: properties.time.hour, minute: properties.time.minute),
       builder: (context, child) => MediaQuery(
         data: MediaQuery.of(context).copyWith(
           alwaysUse24HourFormat: true,
@@ -68,8 +68,8 @@ class MaterialDateTimePickerWidget {
         child: child!,
       ),
     );
-    if(result != null) constructors.time = DateTime(constructors.time.year, constructors.time.month, constructors.time.day, result.hour, result.minute);
-    return result == null ? null : constructors.time;
+    if(result != null) properties.time = DateTime(properties.time.year, properties.time.month, properties.time.day, result.hour, result.minute);
+    return result == null ? null : properties.time;
   }
 }
 

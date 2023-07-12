@@ -1,4 +1,4 @@
-enum IndicatorType{
+enum ProgressType{
   center,
   inStack,
 }

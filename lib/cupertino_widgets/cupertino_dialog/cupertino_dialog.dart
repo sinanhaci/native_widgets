@@ -1,88 +1,85 @@
 import 'package:flutter/cupertino.dart';
-import 'package:native_widgets/models/button_properties_model.dart';
 import '../../enums/dialog_type.dart';
-import '../../models/dialog_models.dart';
+import '../../properties/dialog_properties.dart';
 import '../../widgets/buttons.dart';
 
 class CupertinoDialog extends StatelessWidget {
-  final DialogModel constructors;
-  final CustomButtonTheme? theme;
-  const CupertinoDialog({super.key, required this.constructors,this.theme});
+  final DialogProperties properties;
+  const CupertinoDialog({super.key, required this.properties});
 
   @override
   Widget build(BuildContext context) {
-    _assert();
     return CupertinoAlertDialog(
-      title: Text(
-        constructors.title,
-      ),
-      content: _getContentWidgetByDialogType(),
-      actions: _getActionWidgetsByDialogType(),
+      title: _title(),
+      content: _content(),
+      actions: _actions(),
     );
   }
 
-  List<Widget> _getActionWidgetsByDialogType() {
-    switch (constructors.dialogType) {
-      case DialogType.ok:
-      case DialogType.inputOk:
-        return [CupertinoDialogButton(constructors: constructors.okButtonProperties,theme: theme,)];
-      case DialogType.okCancel:
-      case DialogType.inputOkCancel:
-        return [
-          CupertinoDialogButton(constructors: constructors.cancelButtonProperties!,theme:theme),
-          CupertinoDialogButton(constructors: constructors.okButtonProperties,theme:theme)
-        ];
+  Widget _title(){
+    switch (properties.dialogType) {
+      case DialogType.normal:
+      case DialogType.input:
+        return Text(
+          properties.title,
+          style: properties.theme.titleStyle,
+        );
+      case DialogType.custom:
+        return properties.customDialogProperties?.title ?? const Center();
     }
   }
 
-  Widget _getContentWidgetByDialogType() {
-    switch (constructors.dialogType) {
-      case DialogType.ok:
-      case DialogType.okCancel:
-        return Text(constructors.content);
-      case DialogType.inputOk:
-      case DialogType.inputOkCancel:
+  List<Widget> _actions() {
+    switch (properties.dialogType) {
+      case DialogType.normal:
+      case DialogType.input:
+        if(properties.cancelButton == null){
+          return [CupertinoDialogButton(button: properties.okButton,theme: properties.theme)];
+        }else{
+          return [
+            CupertinoDialogButton(button: properties.cancelButton!,theme: properties.theme),
+            CupertinoDialogButton(button: properties.okButton,theme: properties.theme)
+          ];
+        }
+      case DialogType.custom:
+        if(properties.customDialogProperties?.buttons == null){
+          return [];
+        }
+        return <Widget>[properties.customDialogProperties!.buttons];
+    }
+  }
+
+  Widget _content() {
+    switch (properties.dialogType) {
+      case DialogType.normal:
+        return Text(properties.message,style: properties.theme.messageStyle);
+      case DialogType.input:
         return Column(
           children: [
             Text(
-              constructors.content,
+              properties.message,
+              style: properties.theme.messageStyle,
             ),
             const SizedBox(
               height: 10,
             ),
             CupertinoTextField(
-              placeholder: constructors.inputProperties?.hintText,
-              onChanged: constructors.inputProperties?.onChanged,
-              controller: constructors.inputProperties?.controller,
-              focusNode: constructors.inputProperties?.focusNode,
-              maxLines: constructors.inputProperties?.maxLines,
-              minLines: constructors.inputProperties?.minLines,
-              textInputAction: constructors.inputProperties?.inputAction,
-              keyboardType: constructors.inputProperties?.keyboardType,
+              enabled: properties.inputProperties?.enabled,
+              autofocus: properties.inputProperties?.autoFocus ?? false,
+              decoration: properties.inputProperties?.iosDecoration,
+              placeholder: properties.inputProperties?.hintText,
+              onChanged: properties.inputProperties?.onChanged,
+              controller: properties.inputProperties?.controller,
+              focusNode: properties.inputProperties?.focusNode,
+              maxLines: properties.inputProperties?.maxLines,
+              minLines: properties.inputProperties?.minLines,
+              textInputAction: properties.inputProperties?.inputAction,
+              keyboardType: properties.inputProperties?.keyboardType,
             )
           ],
         );
-    }
-  }
-
-
-  _assert() {
-    switch (constructors.dialogType) {
-      case DialogType.ok:
-        assert(constructors.cancelButtonProperties == null);
-        assert(constructors.inputProperties == null);
-        break;
-      case DialogType.okCancel:
-        assert(constructors.cancelButtonProperties != null);
-        assert(constructors.inputProperties == null);
-        break;
-      case DialogType.inputOk:
-        assert(constructors.inputProperties != null);
-        assert(constructors.cancelButtonProperties == null);
-        break;
-      case DialogType.inputOkCancel:
-        assert(constructors.inputProperties != null);
-        assert(constructors.cancelButtonProperties != null);
+      case DialogType.custom:
+        return properties.customDialogProperties?.body ?? const Center();
     }
   }
 }

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import '../../enums/indicator_type.dart';
-import '../../models/indicator_model.dart';
+import '../../properties/progress_indicator_properties.dart';
 
 class MaterialIndicatorWidget extends StatelessWidget {
-  final CustomIndicatorModel constructors;
-  final CustomIndicatorTheme? theme;
-  const MaterialIndicatorWidget({super.key, required this.constructors,this.theme});
+  final ProgressIndicatorProperties properties;
+  const MaterialIndicatorWidget({super.key, required this.properties});
 
   @override
   Widget build(BuildContext context) {
@@ -13,17 +12,16 @@ class MaterialIndicatorWidget extends StatelessWidget {
   }
 
   Widget _getWidgetByIndicatorType(BuildContext context) {
-    switch (constructors.indicatorType) {
-      case IndicatorType.center:
+    switch (properties.indicatorType) {
+      case ProgressType.center:
         return Center(
-            child:
-                CircularProgressIndicator(backgroundColor: theme?.color)); 
-      case IndicatorType.inStack:
+            child: CircularProgressIndicator(backgroundColor: properties.style?.color,)); 
+      case ProgressType.inStack:
         return Positioned.fill(
           child: Container(
-            color: theme?.inStackBackgroundColor ??  Theme.of(context).scaffoldBackgroundColor.withOpacity(0.25),
+            color: properties.style?.inStackBackgroundColor ?? Theme.of(context).scaffoldBackgroundColor.withOpacity(0.25),
             child: Center(
-              child: CircularProgressIndicator(backgroundColor: theme?.color),
+              child: CircularProgressIndicator(backgroundColor: properties.style?.color),
             ),
           ),
         );

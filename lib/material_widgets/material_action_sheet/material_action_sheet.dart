@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
-import '../../models/action_sheet_model.dart';
-import '../../models/button_properties_model.dart';
+import '../../properties/action_sheet_properties.dart';
 
 class MaterialActionSheet extends StatelessWidget {
-  final ActionSheetModel constructors;
-  final CustomActionSheetTheme? theme;
-  const MaterialActionSheet({super.key, required this.constructors,this.theme});
+  final ActionSheetProperties properties;
+  const MaterialActionSheet({super.key, required this.properties});
 
   @override
   Widget build(BuildContext context) {
     var content = [
-      if(constructors.title != null || constructors.content != null)
-        ListTile(
-          title: _getTextWidgetByConstructors(constructors.title,theme?.androidTitleTheme),
-          subtitle: _getTextWidgetByConstructors(constructors.content,theme?.androidContentTheme),
+      if(properties.title != null || properties.content != null)
+      ...[ListTile(
+          title: _getTextWidgetByConstructors(properties.title,properties.theme?.titleStyle),
+          subtitle: _getTextWidgetByConstructors(properties.content,properties.theme?.messageStyle),
         ),
-      const Divider(),
-      ...constructors.actions
+      const Divider()],
+      ...properties.actions
           .map((e) => ListTile(
+                minLeadingWidth: 10,
                 onTap: e.onPress,
-                title: Text(e.buttonText, style:e.isDefaultAction ? theme?.androidDefaultTheme : e.isDestructiveAction ? theme?.androidDestructiveTheme : theme?.androidActionTheme),
-                leading:e.icon == null ? null : Icon(e.icon,color:e.isDefaultAction ? theme?.androidDefaultTheme?.color : e.isDestructiveAction ? theme?.androidDestructiveTheme?.color : theme?.androidActionTheme?.color),
+                title: Text(e.text, style: e.isDefaultAction ? properties.theme?.isDefaultActionStyle : e.isDestructiveAction ? properties.theme?.isDestructiveActionStyle : properties.theme?.actionButtonStyle),
+                leading:e.icon == null ? null : Icon(e.icon,color: e.iconColor),
               ))
           .toList()
     ];

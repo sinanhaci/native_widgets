@@ -1,83 +1,88 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_properties_first
 library native_widgets;
 
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'cupertino_widgets/cupertino_widgets.dart';
-import 'models/action_sheet_model.dart';
-import 'models/date_time_picker_model.dart';
-import 'models/dialog_models.dart';
-import 'models/indicator_model.dart';
-import 'models/refresh_indicator_model.dart';
-import 'models/switch_model.dart';
-export 'models/action_sheet_model.dart';
-export 'models/button_properties_model.dart';
-export 'models/date_time_picker_model.dart';
-export 'models/dialog_models.dart';
-export 'models/indicator_model.dart';
-export 'models/refresh_indicator_model.dart';
-export 'models/switch_model.dart';
+import 'package:native_widgets/cupertino_widgets/cupertino_widgets.dart';
+import 'package:native_widgets/material_widgets/material_widgets.dart';
+import 'manager/widgets_manager.dart';
+import 'properties/action_sheet_properties.dart';
+import 'properties/date_picker_properties.dart';
+import 'properties/dialog_properties.dart';
+import 'properties/progress_indicator_properties.dart';
+import 'properties/refresh_indicator_model.dart';
+import 'properties/switch_properties.dart';
+export 'properties/action_sheet_properties.dart';
+export 'properties/date_picker_properties.dart';
+export 'properties/dialog_properties.dart';
+export 'properties/progress_indicator_properties.dart';
+export 'properties/refresh_indicator_model.dart';
+export 'properties/switch_properties.dart';
 export 'enums/date_time_picker_type.dart';
 export 'enums/dialog_type.dart';
 export 'enums/indicator_type.dart';
 
 
-class NativeWidgets<T> extends CupertinoWidgets{
-  NativeWidgets(super.context, {super.switchTheme,super.buttonTheme,super.indicatorTheme,super.actionSheetTheme});
+class NativeWidgets<T> {
+  final BuildContext _context;
+  NativeWidgets(this._context);
 
-  
-  Widget nativeSwitch({required CustomSwitchModel constructors}) {
+  final CupertinoWidgets _cupertinoWidgets = CupertinoWidgets();
+  final MaterialWidgets _materialWidgets = MaterialWidgets();
+
+  Widget adaptiveSwitch({required SwitchProperties properties}) {
     switch (Platform.isIOS) {
       case true:
-        return cupertinoSwitch(constructors);
+        return _cupertinoWidgets.customSwitch(properties);
       default:
-        return materialSwitch(constructors);
+        return _materialWidgets.customSwitch(properties);
     }
   }
 
-  Widget nativeIndicator({required CustomIndicatorModel constructors}) {
+  Widget adaptiveIndicator({required ProgressIndicatorProperties properties}) {
     switch (Platform.isIOS) {
       case true:
-        return cupertinoIndicator(constructors);
+        return _cupertinoWidgets.customIndicator(properties);
       default:
-        return materialIndicator(constructors);
+        return _cupertinoWidgets.customIndicator(properties);
     }
   }
 
-  Future<T> nativeDialog({required DialogModel constructors}) async {
+  Future<T> adaptiveDialog({required DialogProperties properties}) async {
     switch (Platform.isIOS) {
       case true:
-        return await cupertinoDialog(constructors);
+        return await _cupertinoWidgets.customDialog(properties,_context);
       default:
-        return await materialDialog(constructors);
+        return await _cupertinoWidgets.customDialog(properties,_context);
     }
   }
 
-  Future<T> nativeActionSheet({required ActionSheetModel constructors}) async {
+  Future<T> adaptiveActionSheet({required ActionSheetProperties properties}) async {
     switch (Platform.isIOS) {
       case true:
-        return await cupertinoActionSheet(constructors);
+        return await _cupertinoWidgets.customActionSheet(properties,_context);
       default:
-        return await materialActionSheet(constructors);
+        return await _cupertinoWidgets.customActionSheet(properties,_context);
     }
   }
 
-  Widget nativeRefreshIndicator({required RefreshIndicatorModel constructors}) {
+  Widget adaptiverefreshIndicator({required RefreshIndicatorProperties properties}) {
     switch (Platform.isIOS) {
       case true:
-        return cupertinoRefreshIndicator(constructors);
+        return _cupertinoWidgets.customRefreshIndicator(properties);
       default:
-        return materialRefreshIndicator(constructors);
+        return _cupertinoWidgets.customRefreshIndicator(properties);
     }
   }
 
-  Future<DateTime?> nativeDateTimePicker(
-      {required DateTimePickerModel constructors}) async {
+  Future<DateTime?> adaptiveDatePicker({required DatePickerProperties properties}) async {
     switch (Platform.isIOS) {
       case true:
-        return await cupertinoDateTimePicker(constructors);
+        return await _cupertinoWidgets.customDatePicker(properties,_context);
       default:
-        return await materialDateTimePickerWidget(constructors);
+        return await _cupertinoWidgets.customDatePicker(properties,_context);
     }
   }
 }
+
+

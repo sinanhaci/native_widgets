@@ -1,21 +1,21 @@
 import 'package:flutter/cupertino.dart';
-import '../../models/action_sheet_model.dart';
+import '../../properties/action_sheet_properties.dart';
 import '../../widgets/buttons.dart';
 
 class CupertinoActionSheetWidget extends StatelessWidget {
-  final ActionSheetModel constructors;
-  final CustomActionSheetTheme? theme;
-  const CupertinoActionSheetWidget({super.key, required this.constructors,this.theme});
+  final ActionSheetProperties properties;
+  const CupertinoActionSheetWidget({super.key, required this.properties,});
 
   @override
   Widget build(BuildContext context) {
     return CupertinoActionSheet(
-      message: _getTextWidgetByConstructors(constructors.content,theme?.iosContentTheme),
-      title: _getTextWidgetByConstructors(constructors.title,theme?.iosTitleTheme),
+      title: _getTextWidgetByConstructors(properties.title,properties.theme?.titleStyle),
+      message: _getTextWidgetByConstructors(properties.content,properties.theme?.messageStyle),
       cancelButton: _getCancelButtonByConstructors(context),
-      actions: constructors.actions
+      actions: properties.actions
           .map((element) => CupertinoActionSheetButton(
-                constructors: element,
+                button: element,
+                theme: properties.theme,
               ))
           .toList(),
     );
@@ -30,7 +30,7 @@ class CupertinoActionSheetWidget extends StatelessWidget {
             key: const Key('Default Button'),
             onPressed: () => Navigator.pop(context),
             isDefaultAction: true,
-            child: Text('Cancel',style: theme?.iosCancelButtonTheme),
+            child: Text('Cancel',style: properties.theme?.buttonStyle),
           );
        
   }

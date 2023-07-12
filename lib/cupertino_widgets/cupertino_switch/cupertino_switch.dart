@@ -1,14 +1,12 @@
 
 import 'package:flutter/cupertino.dart';
-import '../../models/switch_model.dart';
+import '../../properties/switch_properties.dart';
 
 class CupertinoSwitchWidget extends StatelessWidget {
-  final CustomSwitchModel constructors;
-  final CustomSwitchTheme? theme;
+  final SwitchProperties properties;
   const CupertinoSwitchWidget({
     Key? key,
-    this.theme,
-    required this.constructors,
+    required this.properties,
   }) : super(key: key);
 
 
@@ -16,12 +14,12 @@ class CupertinoSwitchWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoSwitch(
       key: const Key('cupertino_switch'),
-      onChanged: constructors.onChanged,
-      value: constructors.value,
-      dragStartBehavior: constructors.dragStartBehavior,
-      activeColor: theme?.activeColor,
-      thumbColor: theme?.thumbColor,
-      trackColor: theme?.trackColor,
+      onChanged: properties.onChanged,
+      value: properties.value,
+      dragStartBehavior: properties.dragStartBehavior,
+      activeColor: properties.theme?.activeColor,
+      thumbColor: properties.theme?.thumbColor,
+      trackColor: properties.theme?.trackColor,
     );
   }
 }

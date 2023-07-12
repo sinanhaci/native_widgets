@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Adaptive Widgets',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        useMaterial3: true,
       ),
       home: const AdaptiveWidgets(),
     );
@@ -26,16 +26,14 @@ class AdaptiveWidgets extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final NativeWidgets nativeWidgets = NativeWidgets(context,buttonTheme: CustomButtonTheme(
-
-    ));
+    final NativeWidgets nativeWidgets = NativeWidgets(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Adaptive Widgets'),
         centerTitle: true,
       ),
-      body: nativeWidgets.nativeRefreshIndicator(
-        constructors: RefreshIndicatorModel(
+      body: nativeWidgets.adaptiverefreshIndicator(
+        properties: RefreshIndicatorProperties(
           onRefresh: ()async{
             await Future.delayed(const Duration(seconds: 2));
           },
@@ -46,15 +44,15 @@ class AdaptiveWidgets extends StatelessWidget {
             _button(
               title: 'Ok Dialog',
               onTap: () {
-                nativeWidgets.nativeDialog(
-                  constructors: DialogModel(
-                    dialogType: DialogType.ok,
+                nativeWidgets.adaptiveDialog(
+                  properties: DialogProperties(
+                    theme: DialogStyle(),
+                    dialogType: DialogType.normal,
                     title: 'Title',
-                    content: 'Content',
-                    okButtonProperties: ButtonProperties(
-                      buttonText: 'OK',
+                    message: 'Content',
+                    okButton: DialogButtonProperties(
+                      text: 'OK',
                       onPress: () => Navigator.pop(context),
-                      isDefaultAction: true
                     ),
                   ),
                 );
@@ -63,20 +61,19 @@ class AdaptiveWidgets extends StatelessWidget {
             _button(
               title: 'Ok Cancel Dialog',
               onTap: () {
-                nativeWidgets.nativeDialog(
-                  constructors: DialogModel(
-                    dialogType: DialogType.okCancel,
+                nativeWidgets.adaptiveDialog(
+                  properties: DialogProperties(
+                    theme: DialogStyle(),
+                    dialogType: DialogType.normal,
                     title: 'Title',
-                    content: 'Content',
-                    okButtonProperties: ButtonProperties(
-                      buttonText: 'Cancel',
+                    message: 'Content',
+                    okButton: DialogButtonProperties(
+                      text: 'Ok',
                       onPress: () => Navigator.pop(context),
-                      isDestructiveAction: true
                     ),
-                    cancelButtonProperties: ButtonProperties(
-                      buttonText: 'Ok',
+                    cancelButton: DialogButtonProperties(
+                      text: 'Cancel',
                       onPress: () => Navigator.pop(context),
-                      isDefaultAction: true
                     ),
                   ),
                 );
@@ -85,15 +82,15 @@ class AdaptiveWidgets extends StatelessWidget {
             _button(
               title: 'Ok Input Dialog',
               onTap: () {
-                nativeWidgets.nativeDialog(
-                  constructors: DialogModel(
-                    dialogType: DialogType.inputOk,
+                nativeWidgets.adaptiveDialog(
+                  properties: DialogProperties(
+                    theme: DialogStyle(),
+                    dialogType: DialogType.input,
                     title: 'Title',
-                    content: 'Content',
-                    okButtonProperties: ButtonProperties(
-                      buttonText: 'OK',
+                    message: 'Content',
+                    okButton: DialogButtonProperties(
+                      text: 'OK',
                       onPress: () => Navigator.pop(context),
-                      isDefaultAction: true
                     ),
                     inputProperties: DialogInputProperties(
                       onChanged: (value){}
@@ -105,20 +102,19 @@ class AdaptiveWidgets extends StatelessWidget {
             _button(
               title: 'Ok Cancel Input Dialog',
               onTap: () {
-                nativeWidgets.nativeDialog(
-                  constructors: DialogModel(
-                    dialogType: DialogType.inputOkCancel,
+                nativeWidgets.adaptiveDialog(
+                  properties: DialogProperties(
+                    theme: DialogStyle(),
+                    dialogType: DialogType.input,
                     title: 'Title',
-                    content: 'Content',
-                    okButtonProperties: ButtonProperties(
-                      buttonText: 'Cancel',
+                    message: 'Content',
+                    okButton: DialogButtonProperties(
+                      text: 'Ok',
                       onPress: () => Navigator.pop(context),
-                      isDestructiveAction: true
                     ),
-                    cancelButtonProperties: ButtonProperties(
-                      buttonText: 'Ok',
+                    cancelButton: DialogButtonProperties(
+                      text: 'Cancel',
                       onPress: () => Navigator.pop(context),
-                      isDefaultAction: true
                     ),
                     inputProperties: DialogInputProperties(
                       onChanged: (value){}
@@ -127,20 +123,21 @@ class AdaptiveWidgets extends StatelessWidget {
                 );
               },
             ),
-            nativeWidgets.nativeSwitch(
-              constructors: CustomSwitchModel(
+            nativeWidgets.adaptiveSwitch(
+              properties: SwitchProperties(
                 value: true,
                 onChanged: (value){}
               )
             ),
-            nativeWidgets.nativeIndicator(
-              constructors: CustomIndicatorModel()
+            nativeWidgets.adaptiveIndicator(
+              properties: ProgressIndicatorProperties()
             ),
            _button(
               title: 'Date Time Picker',
               onTap: () {
-                nativeWidgets.nativeDateTimePicker(
-                  constructors: DateTimePickerModel(
+                nativeWidgets.adaptiveDatePicker(
+                  properties: DatePickerProperties(
+                    style: DateTimeStyle(),
                     pickerType: DateTimePickerType.dateAndTime,
                     time: DateTime.now()
                   ),
@@ -150,8 +147,9 @@ class AdaptiveWidgets extends StatelessWidget {
            _button(
               title: 'Date Picker',
               onTap: () {
-                nativeWidgets.nativeDateTimePicker(
-                  constructors: DateTimePickerModel(
+                nativeWidgets.adaptiveDatePicker(
+                  properties: DatePickerProperties(
+                    style: DateTimeStyle(),
                     pickerType: DateTimePickerType.date,
                     time: DateTime.now()
                   ),
@@ -161,8 +159,9 @@ class AdaptiveWidgets extends StatelessWidget {
            _button(
               title: 'Time Picker',
               onTap: () {
-                nativeWidgets.nativeDateTimePicker(
-                  constructors: DateTimePickerModel(
+                nativeWidgets.adaptiveDatePicker(
+                  properties: DatePickerProperties(
+                    style: DateTimeStyle(),
                     pickerType: DateTimePickerType.time,
                     time: DateTime.now()
                   ),
@@ -172,39 +171,35 @@ class AdaptiveWidgets extends StatelessWidget {
            _button(
               title: 'Action Sheet',
               onTap: () {
-                nativeWidgets.nativeActionSheet(
-                  constructors: ActionSheetModel(
-                    actions: [
-                      ButtonProperties(
-                        buttonText: 'First Action',
-                        onPress: (){},
-                        icon: Icons.add
-                      ),
-                      ButtonProperties(
-                        buttonText: 'Second Action',
-                        onPress: (){},
-                        icon: Icons.add
-                      ),
-                    ]
-                  ),
-                );
-              },
-            ),
-           _button(
-              title: 'Action Sheet Title and Content',
-              onTap: () {
-                nativeWidgets.nativeActionSheet(
-                  constructors: ActionSheetModel(
+                nativeWidgets.adaptiveActionSheet(
+                  properties: ActionSheetProperties(
                     title: 'Title',
                     content: 'Content',
                     actions: [
-                      ButtonProperties(
-                        buttonText: 'First Action',
+                      ActionButton(
+                        text: 'First Action',
+                        onPress: (){},
+                        icon: Icons.add,
+                        isDestructiveAction: true
+                      ),
+                      ActionButton(
+                        text: 'Second Action',
+                        onPress: (){},
+                        icon: Icons.add,
+                        isDefaultAction: true
+                      ),
+                      ActionButton(
+                        text: 'Second Action',
+                        onPress: (){},
+                        icon: Icons.add,
+                      ),
+                      ActionButton(
+                        text: 'Second Action',
                         onPress: (){},
                         icon: Icons.add
                       ),
-                      ButtonProperties(
-                        buttonText: 'Second Action',
+                      ActionButton(
+                        text: 'Second Action',
                         onPress: (){},
                         icon: Icons.add
                       ),
@@ -233,3 +228,5 @@ class AdaptiveWidgets extends StatelessWidget {
     );
   }
 }
+
+

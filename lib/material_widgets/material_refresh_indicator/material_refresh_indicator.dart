@@ -1,32 +1,46 @@
 import 'package:flutter/material.dart';
-import '../../models/refresh_indicator_model.dart';
+import '../../properties/refresh_indicator_model.dart';
 
 class MaterialRefreshIndicator extends StatelessWidget {
-  final RefreshIndicatorModel constructors;
-  const MaterialRefreshIndicator({super.key,required this.constructors});
+  final RefreshIndicatorProperties properties;
+  const MaterialRefreshIndicator({super.key,required this.properties});
 
   @override
   Widget build(BuildContext context) {
     _assert();
     return RefreshIndicator(
-      onRefresh: constructors.onRefresh,
+      onRefresh: properties.onRefresh,
       child: _getChildByConstructors(),
     );
   }
 
   Widget _getChildByConstructors(){
-    return constructors.children == null ? ListView.builder(
-        controller: constructors.scrollController,
-        itemBuilder : constructors.itemBuilder!,
-        itemCount: constructors.itemCount!,
-      ):ListView(
-        shrinkWrap: constructors.shrinkWrap,
-        controller: constructors.scrollController,
-        children: constructors.children!,
+    return properties.children == null ? _listWiev() :
+      ListView(
+        shrinkWrap: properties.shrinkWrap,
+        controller: properties.controller,
+        children: properties.children!,
       );
   }
 
  _assert(){
-    assert((constructors.itemBuilder != null && constructors.children == null) || (constructors.itemBuilder == null && constructors.children != null));
+    assert((properties.itemBuilder != null && properties.children == null) || (properties.itemBuilder == null && properties.children != null));
+  }
+
+  Widget _listWiev(){
+    if(properties.separatorBuilder == null){
+      return ListView.builder(
+        controller: properties.controller,
+        itemBuilder : properties.itemBuilder!,
+        itemCount: properties.itemCount!,
+      );
+    }else{
+      return ListView.separated(
+        separatorBuilder: properties.separatorBuilder!,
+        controller: properties.controller,
+        itemBuilder : properties.itemBuilder!,
+        itemCount: properties.itemCount!,
+      );
+    }
   }
 }

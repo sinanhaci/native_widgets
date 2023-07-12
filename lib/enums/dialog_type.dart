@@ -1,6 +1,5 @@
 enum DialogType{
-  ok,
-  okCancel,
-  inputOk,
-  inputOkCancel
+  normal,
+  input,
+  custom
 }

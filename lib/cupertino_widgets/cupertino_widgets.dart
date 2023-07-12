@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
-import 'package:native_widgets/material_widgets/material_widgets.dart';
-import '../models/action_sheet_model.dart';
-import '../models/date_time_picker_model.dart';
-import '../models/dialog_models.dart';
-import '../models/indicator_model.dart';
-import '../models/refresh_indicator_model.dart';
-import '../models/switch_model.dart';
+import 'package:native_widgets/manager/widgets_manager.dart';
+import '../properties/action_sheet_properties.dart';
+import '../properties/date_picker_properties.dart';
+import '../properties/dialog_properties.dart';
+import '../properties/progress_indicator_properties.dart';
+import '../properties/refresh_indicator_model.dart';
+import '../properties/switch_properties.dart';
 import 'cupertino_action_sheet/cupertino_action_sheet.dart';
 import 'cupertino_date_time_picker/cupertino_date_time_picker.dart';
 import 'cupertino_dialog/cupertino_dialog.dart';
@@ -13,45 +13,48 @@ import 'cupertino_indicator/cupertino_indicator.dart';
 import 'cupertino_refresh_indicator/cupertino_refresh_indicator.dart';
 import 'cupertino_switch/cupertino_switch.dart';
 
-class CupertinoWidgets<T> extends MaterialWidgets{
-  CupertinoWidgets(super.context, {super.switchTheme,super.indicatorTheme,super.buttonTheme,super.actionSheetTheme});
+class CupertinoWidgets<T> extends WidgetsManager {
 
-  
-  Widget cupertinoSwitch(CustomSwitchModel constructors) {
-    return CupertinoSwitchWidget(constructors: constructors,theme: switchTheme,);
+  @override
+  Widget customSwitch(SwitchProperties properties) {
+    return CupertinoSwitchWidget(properties: properties);
+  }
+  @override
+  Widget customIndicator(ProgressIndicatorProperties properties) {
+    return CupertinoIndicatorWidget(properties: properties);
   }
 
-  Widget cupertinoIndicator(CustomIndicatorModel constructors) {
-    return CupertinoIndicatorWidget(constructors: constructors,theme: indicatorTheme,);
-  }
-
-  Future<T> cupertinoDialog(DialogModel constructors) async {
+  @override
+  Future<T> customDialog(DialogProperties properties,BuildContext context) async {
     return await showCupertinoDialog(
       context: context,
       builder: (_) {
-        return CupertinoDialog(constructors: constructors,theme:buttonTheme);
+        return CupertinoDialog(properties: properties);
       },
     );
   }
 
-  Future<T> cupertinoActionSheet(ActionSheetModel constructors) async {
+  @override
+  Future<T> customActionSheet(ActionSheetProperties properties,BuildContext context) async {
     return await showCupertinoModalPopup(
       context: context,
       builder: (_) {
-        return CupertinoActionSheetWidget(constructors: constructors,theme: actionSheetTheme,);
+        return CupertinoActionSheetWidget(properties: properties);
       },
     );
   }
-  
-  Widget cupertinoRefreshIndicator(RefreshIndicatorModel constructors){
-    return CupertinoRefreshIndicator(constructors: constructors);
+
+  @override
+  Widget customRefreshIndicator(RefreshIndicatorProperties properties){
+    return CupertinoRefreshIndicator(properties: properties);
   }
 
-  Future<DateTime?> cupertinoDateTimePicker(DateTimePickerModel constructors) async {
+  @override
+  Future<DateTime?> customDatePicker(DatePickerProperties properties,BuildContext context) async {
      return await showCupertinoModalPopup<DateTime?>(
       context: context,
       builder: (_) {
-        return CupertinoDatePickerWidget(constructors: constructors);
+        return CupertinoDatePickerWidget(properties: properties);
       },
     );
   }

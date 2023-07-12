@@ -1,36 +1,36 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:native_widgets/models/action_sheet_model.dart';
-import '../models/button_properties_model.dart';
+import 'package:native_widgets/properties/action_sheet_properties.dart';
+import 'package:native_widgets/properties/dialog_properties.dart';
+
 
 class CupertinoActionSheetButton extends StatelessWidget {
-  final ButtonProperties constructors;
-  final CustomActionSheetTheme? theme;
-  const CupertinoActionSheetButton({super.key,required this.constructors,this.theme});
+  final ActionButton button;
+  final ActionTheme? theme;
+  const CupertinoActionSheetButton({super.key,required this.button,required this.theme});
 
   @override
   Widget build(BuildContext context) {
+    TextStyle? style = button.isDefaultAction ? theme?.isDefaultActionStyle : button.isDestructiveAction ? theme?.isDestructiveActionStyle : theme?.buttonStyle;
     return CupertinoActionSheetAction(
-        onPressed: constructors.onPress,
-        isDefaultAction: constructors.isDefaultAction,
-        isDestructiveAction: constructors.isDestructiveAction,
-        child: constructors.icon == null ? 
+        onPressed: button.onPress,
+        isDefaultAction: button.isDefaultAction,
+        isDestructiveAction: button.isDestructiveAction,
+        child: button.icon == null ? 
         Text(
-          constructors.buttonText,
-          style: constructors.isDefaultAction ? theme?.iosDefaultTheme : constructors.isDestructiveAction ? theme?.iosDestructiveTheme : theme?.iosActionTheme,
+          button.text,
+          style: style
         ):
         Row(
+          mainAxisAlignment: button.mainAxisAlignment,
           children: [
-            const SizedBox(
-              width: 5,
-            ),
-            Icon(constructors.icon,color:constructors.isDefaultAction ? theme?.iosDefaultTheme?.color : constructors.isDestructiveAction ? theme?.iosDestructiveTheme?.color : theme?.iosActionTheme?.color),
-            const SizedBox(
-              width: 10,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Icon(button.icon,color: button.isDestructiveAction ? CupertinoColors.destructiveRed :  CupertinoColors.activeBlue),
             ),
             Text(
-               constructors.buttonText,
-              style: constructors.isDefaultAction ? theme?.iosDefaultTheme : constructors.isDestructiveAction ? theme?.iosDestructiveTheme : theme?.iosActionTheme,
+              button.text,
+              style: style
             ),
           ],
         ),
@@ -39,36 +39,36 @@ class CupertinoActionSheetButton extends StatelessWidget {
 }
 
 class CupertinoDialogButton extends StatelessWidget {
-  final ButtonProperties constructors;
-  final CustomButtonTheme? theme;
-  const CupertinoDialogButton({super.key,required this.constructors,this.theme});
+  final DialogButtonProperties button;
+  final DialogStyle? theme;
+  const CupertinoDialogButton({super.key,required this.button,this.theme});
 
   @override
   Widget build(BuildContext context) {
     return CupertinoDialogAction(
-      isDestructiveAction: constructors.isDestructiveAction,
-      isDefaultAction: constructors.isDefaultAction,
-      onPressed: constructors.onPress,
-      child:Text(
-        constructors.buttonText,
-        style:  constructors.isDefaultAction ? theme?.iosDefaultTextTheme : constructors.isDestructiveAction ? theme?.iosDestructiveTheme : theme?.iosEmptyTheme
+      isDestructiveAction: button.isDestructiveButton,
+      isDefaultAction: button.isDefaultButton,
+      onPressed: button.onPress,
+      child: Text(
+        button.text,
+        style: button.isDefaultButton ? theme?.isDefaultButtonStyle : button.isDestructiveButton ? theme?.isDestructiveButtonStyle : theme?.buttonStyle
       )
     );
   }
 }
 
 class MaterialDialogButton extends StatelessWidget {
-  final ButtonProperties constructors;
-  final CustomButtonTheme? theme;
-  const MaterialDialogButton({super.key,required this.constructors,this.theme});
+  final DialogButtonProperties button;
+  final DialogStyle? theme;
+  const MaterialDialogButton({super.key,required this.button,this.theme});
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: constructors.onPress,
+      onPressed: button.onPress,
       child: Text(
-        constructors.buttonText,
-        style: constructors.isDefaultAction ? theme?.androidDefaultTextTheme : constructors.isDestructiveAction ? theme?.androidDestructiveTheme : theme?.androidEmptyTheme
+        button.text,
+        style: button.isDefaultButton ? theme?.isDefaultButtonStyle : button.isDestructiveButton ? theme?.isDestructiveButtonStyle : theme?.buttonStyle
       ),
     );
   }

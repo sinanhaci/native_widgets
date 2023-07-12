@@ -1,94 +1,86 @@
 import 'package:flutter/material.dart';
 import '../../enums/dialog_type.dart';
-import '../../models/button_properties_model.dart';
-import '../../models/dialog_models.dart';
+import '../../properties/dialog_properties.dart';
 import '../../widgets/buttons.dart';
 
 class MaterialDialog extends StatelessWidget {
-  final DialogModel constructors;
-  final CustomButtonTheme? theme;
-  const MaterialDialog({super.key, required this.constructors,this.theme});
+  final DialogProperties properties;
+  const MaterialDialog({super.key, required this.properties});
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
-    _assert();
     return AlertDialog(
         actionsAlignment: MainAxisAlignment.end,
-        title: Text(
-          constructors.title,
-        ),
-        content: _getContentWidgetByDialogType(theme),
-        actions: _getActionWidgetsByDialogType());
+        title: _title(),
+        content: _content(),
+        actions: _actions());
   }
 
-  List<Widget> _getActionWidgetsByDialogType() {
-    switch (constructors.dialogType) {
-      case DialogType.ok:
-      case DialogType.inputOk:
-        return [MaterialDialogButton(constructors: constructors.okButtonProperties,theme: theme,)];
-      case DialogType.okCancel:
-      case DialogType.inputOkCancel:
-        return [
-          MaterialDialogButton(constructors: constructors.cancelButtonProperties!,theme:theme),
-          MaterialDialogButton(constructors: constructors.okButtonProperties,theme:theme)
-        ];
+  Widget _title() {
+    switch (properties.dialogType) {
+      case DialogType.normal:
+      case DialogType.input:
+        return Text(
+          properties.title,
+          style: properties.theme.titleStyle,
+        );
+      case DialogType.custom:
+        return properties.customDialogProperties?.title ?? const Center();
     }
   }
 
-  Widget _getContentWidgetByDialogType(ThemeData theme) {
-    switch (constructors.dialogType) {
-      case DialogType.ok:
-      case DialogType.okCancel:
-        return Text(constructors.content,style: theme.textTheme.headline6!,);
-      case DialogType.inputOk:
-      case DialogType.inputOkCancel:
+  List<Widget> _actions() {
+    switch (properties.dialogType) {
+      case DialogType.normal:
+      case DialogType.input:
+        if (properties.cancelButton == null) {
+          return [
+            MaterialDialogButton(
+                button: properties.okButton, theme: properties.theme)
+          ];
+        } else {
+          return [
+            MaterialDialogButton(
+                button: properties.cancelButton!, theme: properties.theme),
+            MaterialDialogButton(
+                button: properties.okButton, theme: properties.theme)
+          ];
+        }
+      case DialogType.custom:
+        return [properties.customDialogProperties?.buttons ?? const Center()];
+    }
+  }
+
+  Widget _content() {
+    switch (properties.dialogType) {
+      case DialogType.normal:
+        return Text(properties.message, style: properties.theme.messageStyle);
+      case DialogType.input:
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              constructors.content,
-              style: theme.textTheme.headline6!,
-            ),
+            Text(properties.message, style: properties.theme.messageStyle),
             const SizedBox(
               height: 10,
             ),
             TextField(
-              decoration: InputDecoration(
-                hintText: constructors.inputProperties?.hintText
-              ),
-              onChanged: constructors.inputProperties?.onChanged,
-              controller: constructors.inputProperties?.controller,
-              focusNode: constructors.inputProperties?.focusNode,
-              maxLines: constructors.inputProperties?.maxLines,
-              minLines: constructors.inputProperties?.minLines,
-              textInputAction: constructors.inputProperties?.inputAction,
-              keyboardType: constructors.inputProperties?.keyboardType,
+              enabled: properties.inputProperties?.enabled,
+              autofocus: properties.inputProperties?.autoFocus ?? false,
+              decoration: properties.inputProperties?.androidDecoration ??InputDecoration(hintText: properties.inputProperties?.hintText),
+              onChanged: properties.inputProperties?.onChanged,
+              controller: properties.inputProperties?.controller,
+              focusNode: properties.inputProperties?.focusNode,
+              maxLines: properties.inputProperties?.maxLines,
+              minLines: properties.inputProperties?.minLines,
+              textInputAction: properties.inputProperties?.inputAction,
+              keyboardType: properties.inputProperties?.keyboardType,
+              onTap: properties.inputProperties?.onTap,
             )
           ],
         );
-    }
-  }
-
-
-  _assert() {
-    switch (constructors.dialogType) {
-      case DialogType.ok:
-        assert(constructors.cancelButtonProperties == null);
-        assert(constructors.inputProperties == null);
-        break;
-      case DialogType.okCancel:
-        assert(constructors.cancelButtonProperties != null);
-        assert(constructors.inputProperties == null);
-        break;
-      case DialogType.inputOk:
-        assert(constructors.inputProperties != null);
-        assert(constructors.cancelButtonProperties == null);
-        break;
-      case DialogType.inputOkCancel:
-        assert(constructors.inputProperties != null);
-        assert(constructors.cancelButtonProperties != null);
+      case DialogType.custom:
+        return properties.customDialogProperties?.body ?? const Center();
     }
   }
 }
