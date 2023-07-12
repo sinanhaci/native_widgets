@@ -1,12 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_properties_first
 import 'package:flutter/material.dart';
 import '../manager/widgets_manager.dart';
-import '../properties/action_sheet_properties.dart';
-import '../properties/date_picker_properties.dart';
-import '../properties/dialog_properties.dart';
-import '../properties/progress_indicator_properties.dart';
-import '../properties/refresh_indicator_model.dart';
-import '../properties/switch_properties.dart';
+import '../properties/_export_properties.dart';
 import 'material_action_sheet/material_action_sheet.dart';
 import 'material_date_time_picker/material_date_time_picker.dart';
 import 'material_dialog/material_dialog.dart';

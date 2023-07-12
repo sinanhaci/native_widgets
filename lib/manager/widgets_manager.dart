@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:native_widgets/native_widgets.dart';
+import '../properties/_export_properties.dart';
 
 abstract class WidgetsManager<T> {
   Widget customSwitch(SwitchProperties properties);

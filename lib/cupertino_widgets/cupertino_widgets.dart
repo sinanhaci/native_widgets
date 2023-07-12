@@ -1,11 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:native_widgets/manager/widgets_manager.dart';
-import '../properties/action_sheet_properties.dart';
-import '../properties/date_picker_properties.dart';
-import '../properties/dialog_properties.dart';
-import '../properties/progress_indicator_properties.dart';
-import '../properties/refresh_indicator_model.dart';
-import '../properties/switch_properties.dart';
+import '../properties/_export_properties.dart';
 import 'cupertino_action_sheet/cupertino_action_sheet.dart';
 import 'cupertino_date_time_picker/cupertino_date_time_picker.dart';
 import 'cupertino_dialog/cupertino_dialog.dart';

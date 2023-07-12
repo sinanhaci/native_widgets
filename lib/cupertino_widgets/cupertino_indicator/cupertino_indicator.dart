@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
-import '../../enums/indicator_type.dart';
-import '../../properties/progress_indicator_properties.dart';
+import '../export.dart';
+
 
 class CupertinoIndicatorWidget extends StatelessWidget {
   final ProgressIndicatorProperties properties;

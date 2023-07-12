@@ -5,7 +5,7 @@ class SwitchProperties{
   final void Function(bool)? onChanged;
   final bool value;
   final DragStartBehavior dragStartBehavior;
-  final SwitchTheme? theme;
+  final SwitchStyle? theme;
   const SwitchProperties({
     Key? key,
     this.onChanged,
@@ -16,10 +16,10 @@ class SwitchProperties{
 }
 
 
-class SwitchTheme{
+class SwitchStyle{
   final Color? activeColor;
   final Color? thumbColor;
   final Color? trackColor;
 
-  SwitchTheme({this.activeColor, this.thumbColor, this.trackColor});
+  SwitchStyle({this.activeColor, this.thumbColor, this.trackColor});
 }

@@ -1,6 +1,6 @@
 
-import 'package:flutter/cupertino.dart';
-import '../../properties/switch_properties.dart';
+import '../export.dart';
+
 
 class CupertinoSwitchWidget extends StatelessWidget {
   final SwitchProperties properties;

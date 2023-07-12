@@ -1,26 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_properties_first
 library native_widgets;
 
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:native_widgets/cupertino_widgets/cupertino_widgets.dart';
-import 'package:native_widgets/material_widgets/material_widgets.dart';
-import 'manager/widgets_manager.dart';
-import 'properties/action_sheet_properties.dart';
-import 'properties/date_picker_properties.dart';
-import 'properties/dialog_properties.dart';
-import 'properties/progress_indicator_properties.dart';
-import 'properties/refresh_indicator_model.dart';
-import 'properties/switch_properties.dart';
-export 'properties/action_sheet_properties.dart';
-export 'properties/date_picker_properties.dart';
-export 'properties/dialog_properties.dart';
-export 'properties/progress_indicator_properties.dart';
-export 'properties/refresh_indicator_model.dart';
-export 'properties/switch_properties.dart';
-export 'enums/date_time_picker_type.dart';
-export 'enums/dialog_type.dart';
-export 'enums/indicator_type.dart';
+import 'export.dart';
+export 'export.dart';
+
 
 
 class NativeWidgets<T> {

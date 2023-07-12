@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
-import '../../enums/dialog_type.dart';
-import '../../properties/dialog_properties.dart';
-import '../../widgets/buttons.dart';
+import '../export.dart';
+
 
 class CupertinoDialog extends StatelessWidget {
   final DialogProperties properties;
