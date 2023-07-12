@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class ActionSheetProperties {
   String? title;
   String? content;
-  ActionTheme? theme;
   List<ActionButton> actions;
   ActionSheetProperties({
     this.title,
@@ -17,7 +16,6 @@ class ActionButton {
   bool isDestructiveAction;
   bool isDefaultAction;
   IconData? icon;
-  Color? iconColor;
   MainAxisAlignment mainAxisAlignment;
   void Function() onPress;
   ActionButton({
@@ -30,38 +28,46 @@ class ActionButton {
   });
 }
 
-class ActionTheme {
+class ActionSheetStyle {
   TextStyle? titleStyle;
   TextStyle? messageStyle;
   TextStyle? buttonStyle;
   TextStyle? actionButtonStyle;
   TextStyle? isDefaultActionStyle;
   TextStyle? isDestructiveActionStyle;
+  Color? iconColor;
+  double? iconSize;
 
-  ActionTheme({
+  ActionSheetStyle({
     this.titleStyle,
     this.messageStyle,
     this.buttonStyle,
     this.actionButtonStyle,
     this.isDefaultActionStyle,
-    this.isDestructiveActionStyle
+    this.isDestructiveActionStyle,
+    this.iconColor,
+    this.iconSize
   });
 
-  ActionTheme copyWith({
+  ActionSheetStyle copyWith({
     TextStyle? titleStyle,
     TextStyle? messageStyle,
     TextStyle? buttonStyle,
     TextStyle? actionButtonStyle,
     TextStyle? isDefaultActionStyle,
     TextStyle? isDestructiveActionStyle,
+    Color? iconColor,
+    double? iconSize,
   }){
-    return ActionTheme(
+    return ActionSheetStyle(
       titleStyle: titleStyle ?? this.titleStyle,
       messageStyle: messageStyle ?? this.messageStyle,
       buttonStyle: buttonStyle ?? this.buttonStyle,
       actionButtonStyle: actionButtonStyle ?? this.actionButtonStyle,
       isDefaultActionStyle: isDefaultActionStyle ?? this.isDefaultActionStyle,
-      isDestructiveActionStyle: isDestructiveActionStyle ?? this.isDestructiveActionStyle
+      isDestructiveActionStyle: isDestructiveActionStyle ?? this.isDestructiveActionStyle,
+      iconSize: iconSize ?? this.iconSize,
+      iconColor: iconColor ?? this.iconColor
     );
   }
 }

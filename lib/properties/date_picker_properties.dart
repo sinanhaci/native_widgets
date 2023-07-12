@@ -1,4 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/cupertino.dart';
+
 import '../enums/date_time_picker_type.dart';
 
 class DatePickerProperties {
@@ -10,7 +12,6 @@ class DatePickerProperties {
   DatePickerDateOrder dateOrder;
   DateTime time;
   DateTimePickerType? pickerType;
-  DateTimeStyle? style;
   bool use24hFormat;
   String okButtonText;
   DatePickerProperties({
@@ -22,20 +23,29 @@ class DatePickerProperties {
     this.dateOrder = DatePickerDateOrder.dmy,
     required this.time,
     this.pickerType,
-    this.style,
     this.use24hFormat = true,
     this.okButtonText = "Ok"
   });
 }
 
-class DateTimeStyle {
+class DatePickerStyle {
 ///  Only ios background color.
   Color? backgroundColor;
 ///  Only ios widget height.
   double height;
-  DateTimeStyle({
+  DatePickerStyle({
     this.backgroundColor,
     this.height = 250
   });
   
+
+  DatePickerStyle copyWith({
+    Color? backgroundColor,
+    double? height,
+  }) {
+    return DatePickerStyle(
+      backgroundColor: backgroundColor ?? this.backgroundColor,
+      height: height ?? this.height,
+    );
+  }
 }

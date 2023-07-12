@@ -12,31 +12,31 @@ import 'material_switch/material_switch.dart';
 class MaterialWidgets<T> extends WidgetsManager{
 
   @override
-  Widget customSwitch(SwitchProperties properties) {
-    return MaterialSwitchWidget(properties: properties);
+  Widget customSwitch(SwitchProperties properties,SwitchStyle style) {
+    return MaterialSwitchWidget(properties: properties,style: style);
   }
 
   @override
-  Widget customIndicator(ProgressIndicatorProperties properties) {
-    return MaterialIndicatorWidget(properties: properties);
+  Widget customIndicator(ProgressIndicatorProperties properties,ProgressIndicatorStyle style) {
+    return MaterialIndicatorWidget(properties: properties,style: style);
   }
 
   @override
-  Future<T> customDialog(DialogProperties properties,BuildContext context) async {
+  Future<T> customDialog(DialogProperties properties,BuildContext context,DialogStyle style) async {
     return await showDialog(
       context: context,
       builder: (_) {
-        return MaterialDialog(properties: properties);
+        return MaterialDialog(properties: properties,style: style);
       },
     );
   }
 
   @override
-  Future<T> customActionSheet(ActionSheetProperties properties,BuildContext context) async {
+  Future<T> customActionSheet(ActionSheetProperties properties,BuildContext context,ActionSheetStyle style) async {
     return await showModalBottomSheet(
       context: context,
       builder: (_) {
-        return MaterialActionSheet(properties: properties);
+        return MaterialActionSheet(properties: properties,style: style);
       },
     );
   }
@@ -47,7 +47,7 @@ class MaterialWidgets<T> extends WidgetsManager{
   }
 
   @override
-  Future<DateTime?> customDatePicker(DatePickerProperties properties,BuildContext context) async {
+  Future<DateTime?> customDatePicker(DatePickerProperties properties,BuildContext context,DatePickerStyle style) async {
     var dateTimePicker = MaterialDateTimePickerWidget(properties: properties, context: context);
     return await dateTimePicker.materialDateTimePickerWidget();
   }

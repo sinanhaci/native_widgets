@@ -3,7 +3,8 @@ import '../../properties/switch_properties.dart';
 
 class MaterialSwitchWidget extends StatelessWidget {
   final SwitchProperties properties;
-  const MaterialSwitchWidget({super.key, required this.properties});
+  final SwitchStyle? style;
+  const MaterialSwitchWidget({super.key, required this.properties,this.style});
 
   @override
   Widget build(BuildContext context) {
@@ -11,13 +12,13 @@ class MaterialSwitchWidget extends StatelessWidget {
       onChanged: properties.onChanged,
       value: properties.value,
       dragStartBehavior: properties.dragStartBehavior,
-      activeColor: properties.theme?.activeColor,
+      activeColor: style?.activeColor,
       trackColor: MaterialStateProperty.resolveWith(
         (states) => states.contains(MaterialState.selected)
-            ? properties.theme?.activeColor
-            : properties.theme?.trackColor,
+            ? style?.activeColor
+            : style?.trackColor,
       ),
-      thumbColor: MaterialStateProperty.all(properties.theme?.thumbColor),
+      thumbColor: MaterialStateProperty.all(style?.thumbColor),
     );
   }
 }

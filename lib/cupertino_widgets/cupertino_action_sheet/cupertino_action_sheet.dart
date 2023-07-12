@@ -4,18 +4,19 @@ import '../../widgets/buttons.dart';
 
 class CupertinoActionSheetWidget extends StatelessWidget {
   final ActionSheetProperties properties;
-  const CupertinoActionSheetWidget({super.key, required this.properties,});
+  final ActionSheetStyle? style;
+  const CupertinoActionSheetWidget({super.key, required this.properties,this.style});
 
   @override
   Widget build(BuildContext context) {
     return CupertinoActionSheet(
-      title: _getTextWidgetByConstructors(properties.title,properties.theme?.titleStyle),
-      message: _getTextWidgetByConstructors(properties.content,properties.theme?.messageStyle),
+      title: _getTextWidgetByConstructors(properties.title,style?.titleStyle),
+      message: _getTextWidgetByConstructors(properties.content,style?.messageStyle),
       cancelButton: _getCancelButtonByConstructors(context),
       actions: properties.actions
           .map((element) => CupertinoActionSheetButton(
                 button: element,
-                theme: properties.theme,
+                style: style,
               ))
           .toList(),
     );
@@ -30,7 +31,7 @@ class CupertinoActionSheetWidget extends StatelessWidget {
             key: const Key('Default Button'),
             onPressed: () => Navigator.pop(context),
             isDefaultAction: true,
-            child: Text('Cancel',style: properties.theme?.buttonStyle),
+            child: Text('Cancel',style: style?.buttonStyle),
           );
        
   }

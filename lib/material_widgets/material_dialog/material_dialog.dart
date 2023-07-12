@@ -5,7 +5,8 @@ import '../../widgets/buttons.dart';
 
 class MaterialDialog extends StatelessWidget {
   final DialogProperties properties;
-  const MaterialDialog({super.key, required this.properties});
+  final DialogStyle? style;
+  const MaterialDialog({super.key, required this.properties,this.style});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class MaterialDialog extends StatelessWidget {
       case DialogType.input:
         return Text(
           properties.title,
-          style: properties.theme.titleStyle,
+          style: style?.titleStyle,
         );
       case DialogType.custom:
         return properties.customDialogProperties?.title ?? const Center();
@@ -36,14 +37,14 @@ class MaterialDialog extends StatelessWidget {
         if (properties.cancelButton == null) {
           return [
             MaterialDialogButton(
-                button: properties.okButton, theme: properties.theme)
+                button: properties.okButton, theme: style)
           ];
         } else {
           return [
             MaterialDialogButton(
-                button: properties.cancelButton!, theme: properties.theme),
+                button: properties.cancelButton!, theme: style),
             MaterialDialogButton(
-                button: properties.okButton, theme: properties.theme)
+                button: properties.okButton, theme: style)
           ];
         }
       case DialogType.custom:
@@ -54,13 +55,13 @@ class MaterialDialog extends StatelessWidget {
   Widget _content() {
     switch (properties.dialogType) {
       case DialogType.normal:
-        return Text(properties.message, style: properties.theme.messageStyle);
+        return Text(properties.message, style: style?.messageStyle);
       case DialogType.input:
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(properties.message, style: properties.theme.messageStyle),
+            Text(properties.message, style: style?.messageStyle),
             const SizedBox(
               height: 10,
             ),

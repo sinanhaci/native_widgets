@@ -6,12 +6,12 @@ import 'package:native_widgets/properties/dialog_properties.dart';
 
 class CupertinoActionSheetButton extends StatelessWidget {
   final ActionButton button;
-  final ActionTheme? theme;
-  const CupertinoActionSheetButton({super.key,required this.button,required this.theme});
+  final ActionSheetStyle? style;
+  const CupertinoActionSheetButton({super.key,required this.button,required this.style});
 
   @override
   Widget build(BuildContext context) {
-    TextStyle? style = button.isDefaultAction ? theme?.isDefaultActionStyle : button.isDestructiveAction ? theme?.isDestructiveActionStyle : theme?.buttonStyle;
+    TextStyle? textStyle = button.isDefaultAction ? style?.isDefaultActionStyle : button.isDestructiveAction ? style?.isDestructiveActionStyle : style?.buttonStyle;
     return CupertinoActionSheetAction(
         onPressed: button.onPress,
         isDefaultAction: button.isDefaultAction,
@@ -19,18 +19,18 @@ class CupertinoActionSheetButton extends StatelessWidget {
         child: button.icon == null ? 
         Text(
           button.text,
-          style: style
+          style: textStyle
         ):
         Row(
           mainAxisAlignment: button.mainAxisAlignment,
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Icon(button.icon,color: button.isDestructiveAction ? CupertinoColors.destructiveRed :  CupertinoColors.activeBlue),
+              child: Icon(button.icon,color: style?.iconColor ?? (button.isDestructiveAction ? CupertinoColors.destructiveRed :  CupertinoColors.activeBlue),size: style?.iconSize),
             ),
             Text(
               button.text,
-              style: style
+              style: textStyle
             ),
           ],
         ),

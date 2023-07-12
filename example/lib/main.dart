@@ -26,7 +26,7 @@ class AdaptiveWidgets extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final NativeWidgets nativeWidgets = NativeWidgets(context);
+    final NativeWidgets nativeWidgets = NativeWidgets(context,actionSheetStyle: ActionSheetStyle(),datePickerStyle: DatePickerStyle(),dialogStyle: DialogStyle(),progressIndicatorStyle: ProgressIndicatorStyle(),switchStyle: SwitchStyle());
     return Scaffold(
       appBar: AppBar(
         title: const Text('Adaptive Widgets'),
@@ -46,7 +46,6 @@ class AdaptiveWidgets extends StatelessWidget {
               onTap: () {
                 nativeWidgets.adaptiveDialog(
                   properties: DialogProperties(
-                    theme: DialogStyle(),
                     dialogType: DialogType.normal,
                     title: 'Title',
                     message: 'Content',
@@ -63,7 +62,6 @@ class AdaptiveWidgets extends StatelessWidget {
               onTap: () {
                 nativeWidgets.adaptiveDialog(
                   properties: DialogProperties(
-                    theme: DialogStyle(),
                     dialogType: DialogType.normal,
                     title: 'Title',
                     message: 'Content',
@@ -84,7 +82,6 @@ class AdaptiveWidgets extends StatelessWidget {
               onTap: () {
                 nativeWidgets.adaptiveDialog(
                   properties: DialogProperties(
-                    theme: DialogStyle(),
                     dialogType: DialogType.input,
                     title: 'Title',
                     message: 'Content',
@@ -104,7 +101,6 @@ class AdaptiveWidgets extends StatelessWidget {
               onTap: () {
                 nativeWidgets.adaptiveDialog(
                   properties: DialogProperties(
-                    theme: DialogStyle(),
                     dialogType: DialogType.input,
                     title: 'Title',
                     message: 'Content',
@@ -137,7 +133,6 @@ class AdaptiveWidgets extends StatelessWidget {
               onTap: () {
                 nativeWidgets.adaptiveDatePicker(
                   properties: DatePickerProperties(
-                    style: DateTimeStyle(),
                     pickerType: DateTimePickerType.dateAndTime,
                     time: DateTime.now()
                   ),
@@ -149,7 +144,6 @@ class AdaptiveWidgets extends StatelessWidget {
               onTap: () {
                 nativeWidgets.adaptiveDatePicker(
                   properties: DatePickerProperties(
-                    style: DateTimeStyle(),
                     pickerType: DateTimePickerType.date,
                     time: DateTime.now()
                   ),
@@ -161,7 +155,6 @@ class AdaptiveWidgets extends StatelessWidget {
               onTap: () {
                 nativeWidgets.adaptiveDatePicker(
                   properties: DatePickerProperties(
-                    style: DateTimeStyle(),
                     pickerType: DateTimePickerType.time,
                     time: DateTime.now()
                   ),

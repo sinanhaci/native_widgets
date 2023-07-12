@@ -3,18 +3,19 @@ import '../export.dart';
 
 class CupertinoDatePickerWidget extends StatelessWidget {
   final DatePickerProperties properties;
-  const CupertinoDatePickerWidget({super.key, required this.properties});
+  final DatePickerStyle? style;
+  const CupertinoDatePickerWidget({super.key, required this.properties,this.style});
 
   @override
   Widget build(BuildContext context) {
     var theme = CupertinoTheme.of(context);
     return Container(
-      color: properties.style?.backgroundColor ?? theme.scaffoldBackgroundColor,
-      height: properties.style?.height,
+      color: style?.backgroundColor ?? theme.scaffoldBackgroundColor,
+      height: style?.height,
       child: Stack(
         children: [
           CupertinoDatePicker(
-            backgroundColor: properties.style?.backgroundColor ?? theme.scaffoldBackgroundColor,
+            backgroundColor: style?.backgroundColor ?? theme.scaffoldBackgroundColor,
             maximumYear: properties.maximumYear ?? DateTime.now().year,
             minimumYear: properties.minimumYear ?? DateTime.now().year,
             maximumDate: properties.maximumDate ?? DateTime.parse(Constants.maximumDateTimeString),

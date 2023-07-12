@@ -6,7 +6,6 @@ class DialogProperties {
   String message;
   DialogButtonProperties okButton;
   DialogButtonProperties? cancelButton;
-  DialogStyle theme;
   DialogInputProperties? inputProperties;
   DialogType dialogType;
   CustomDialogProperties? customDialogProperties;
@@ -16,7 +15,6 @@ class DialogProperties {
     required this.message,
     required this.okButton,
     this.cancelButton,
-    required this.theme,
     this.inputProperties,
     this.customDialogProperties
   });   
@@ -34,37 +32,6 @@ class DialogButtonProperties {
     this.isDefaultButton = false,
     this.isDestructiveButton = false
   });
-}
-
-class DialogStyle {
-  TextStyle? titleStyle;
-  TextStyle? messageStyle;
-  TextStyle? buttonStyle;
-  TextStyle? isDestructiveButtonStyle;
-  TextStyle? isDefaultButtonStyle;
-  DialogStyle({
-    this.titleStyle,
-    this.messageStyle,
-    this.buttonStyle,
-    this.isDestructiveButtonStyle,
-    this.isDefaultButtonStyle
-  });
-
-  DialogStyle copyWith({
-    TextStyle? titleStyle,
-    TextStyle? messageStyle,
-    TextStyle? buttonStyle,
-    TextStyle? isDestructiveButtonStyle,
-    TextStyle? isDefaultButtonStyle,
-  }){
-    return DialogStyle(
-      titleStyle: titleStyle ?? this.titleStyle,
-      messageStyle: messageStyle ?? this.messageStyle,
-      buttonStyle: buttonStyle ?? this.buttonStyle,
-      isDestructiveButtonStyle: isDestructiveButtonStyle ?? this.isDestructiveButtonStyle,
-      isDefaultButtonStyle: isDefaultButtonStyle ?? this.isDefaultButtonStyle,
-    );
-  }
 }
 
 class DialogInputProperties {
@@ -109,3 +76,35 @@ class CustomDialogProperties {
     required this.buttons
   });
 }
+
+class DialogStyle {
+  TextStyle? titleStyle;
+  TextStyle? messageStyle;
+  TextStyle? buttonStyle;
+  TextStyle? isDestructiveButtonStyle;
+  TextStyle? isDefaultButtonStyle;
+  DialogStyle({
+    this.titleStyle,
+    this.messageStyle,
+    this.buttonStyle,
+    this.isDestructiveButtonStyle,
+    this.isDefaultButtonStyle
+  });
+
+  DialogStyle copyWith({
+    TextStyle? titleStyle,
+    TextStyle? messageStyle,
+    TextStyle? buttonStyle,
+    TextStyle? isDestructiveButtonStyle,
+    TextStyle? isDefaultButtonStyle,
+  }){
+    return DialogStyle(
+      titleStyle: titleStyle ?? this.titleStyle,
+      messageStyle: messageStyle ?? this.messageStyle,
+      buttonStyle: buttonStyle ?? this.buttonStyle,
+      isDestructiveButtonStyle: isDestructiveButtonStyle ?? this.isDestructiveButtonStyle,
+      isDefaultButtonStyle: isDefaultButtonStyle ?? this.isDefaultButtonStyle,
+    );
+  }
+}
+

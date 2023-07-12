@@ -4,7 +4,8 @@ import '../../properties/progress_indicator_properties.dart';
 
 class MaterialIndicatorWidget extends StatelessWidget {
   final ProgressIndicatorProperties properties;
-  const MaterialIndicatorWidget({super.key, required this.properties});
+  final ProgressIndicatorStyle? style;
+  const MaterialIndicatorWidget({super.key, required this.properties,this.style});
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +16,13 @@ class MaterialIndicatorWidget extends StatelessWidget {
     switch (properties.indicatorType) {
       case ProgressType.center:
         return Center(
-            child: CircularProgressIndicator(backgroundColor: properties.style?.color,)); 
+            child: CircularProgressIndicator(backgroundColor: style?.color,)); 
       case ProgressType.inStack:
         return Positioned.fill(
           child: Container(
-            color: properties.style?.inStackBackgroundColor ?? Theme.of(context).scaffoldBackgroundColor.withOpacity(0.25),
+            color: style?.inStackBackgroundColor ?? Theme.of(context).scaffoldBackgroundColor.withOpacity(0.25),
             child: Center(
-              child: CircularProgressIndicator(backgroundColor: properties.style?.color),
+              child: CircularProgressIndicator(backgroundColor: style?.color),
             ),
           ),
         );

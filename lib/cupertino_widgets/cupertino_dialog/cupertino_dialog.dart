@@ -3,7 +3,8 @@ import '../export.dart';
 
 class CupertinoDialog extends StatelessWidget {
   final DialogProperties properties;
-  const CupertinoDialog({super.key, required this.properties});
+  final DialogStyle? style;
+  const CupertinoDialog({super.key, required this.properties,this.style});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class CupertinoDialog extends StatelessWidget {
       case DialogType.input:
         return Text(
           properties.title,
-          style: properties.theme.titleStyle,
+          style: style?.titleStyle,
         );
       case DialogType.custom:
         return properties.customDialogProperties?.title ?? const Center();
@@ -32,11 +33,11 @@ class CupertinoDialog extends StatelessWidget {
       case DialogType.normal:
       case DialogType.input:
         if(properties.cancelButton == null){
-          return [CupertinoDialogButton(button: properties.okButton,theme: properties.theme)];
+          return [CupertinoDialogButton(button: properties.okButton,theme: style)];
         }else{
           return [
-            CupertinoDialogButton(button: properties.cancelButton!,theme: properties.theme),
-            CupertinoDialogButton(button: properties.okButton,theme: properties.theme)
+            CupertinoDialogButton(button: properties.cancelButton!,theme: style),
+            CupertinoDialogButton(button: properties.okButton,theme: style)
           ];
         }
       case DialogType.custom:
@@ -50,13 +51,13 @@ class CupertinoDialog extends StatelessWidget {
   Widget _content() {
     switch (properties.dialogType) {
       case DialogType.normal:
-        return Text(properties.message,style: properties.theme.messageStyle);
+        return Text(properties.message,style: style?.messageStyle);
       case DialogType.input:
         return Column(
           children: [
             Text(
               properties.message,
-              style: properties.theme.messageStyle,
+              style: style?.messageStyle,
             ),
             const SizedBox(
               height: 10,

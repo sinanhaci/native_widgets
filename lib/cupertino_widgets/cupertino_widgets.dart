@@ -11,30 +11,30 @@ import 'cupertino_switch/cupertino_switch.dart';
 class CupertinoWidgets<T> extends WidgetsManager {
 
   @override
-  Widget customSwitch(SwitchProperties properties) {
-    return CupertinoSwitchWidget(properties: properties);
+  Widget customSwitch(SwitchProperties properties,SwitchStyle style) {
+    return CupertinoSwitchWidget(properties: properties, style: style);
   }
   @override
-  Widget customIndicator(ProgressIndicatorProperties properties) {
-    return CupertinoIndicatorWidget(properties: properties);
+  Widget customIndicator(ProgressIndicatorProperties properties,ProgressIndicatorStyle style) {
+    return CupertinoIndicatorWidget(properties: properties,style: style);
   }
 
   @override
-  Future<T> customDialog(DialogProperties properties,BuildContext context) async {
+  Future<T> customDialog(DialogProperties properties,BuildContext context,DialogStyle style) async {
     return await showCupertinoDialog(
       context: context,
       builder: (_) {
-        return CupertinoDialog(properties: properties);
+        return CupertinoDialog(properties: properties,style: style);
       },
     );
   }
 
   @override
-  Future<T> customActionSheet(ActionSheetProperties properties,BuildContext context) async {
+  Future<T> customActionSheet(ActionSheetProperties properties,BuildContext context,ActionSheetStyle style) async {
     return await showCupertinoModalPopup(
       context: context,
       builder: (_) {
-        return CupertinoActionSheetWidget(properties: properties);
+        return CupertinoActionSheetWidget(properties: properties,style: style);
       },
     );
   }
@@ -45,11 +45,11 @@ class CupertinoWidgets<T> extends WidgetsManager {
   }
 
   @override
-  Future<DateTime?> customDatePicker(DatePickerProperties properties,BuildContext context) async {
+  Future<DateTime?> customDatePicker(DatePickerProperties properties,BuildContext context,DatePickerStyle style) async {
      return await showCupertinoModalPopup<DateTime?>(
       context: context,
       builder: (_) {
-        return CupertinoDatePickerWidget(properties: properties);
+        return CupertinoDatePickerWidget(properties: properties,style: style);
       },
     );
   }

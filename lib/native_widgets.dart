@@ -7,46 +7,65 @@ export 'export.dart';
 
 
 
+
+
 class NativeWidgets<T> {
   final BuildContext _context;
-  NativeWidgets(this._context);
+  NativeWidgets(this._context,{required this.progressIndicatorStyle,required this.switchStyle,required this.dialogStyle,required this.datePickerStyle,required this.actionSheetStyle});
+
+  SwitchStyle switchStyle;
+  ProgressIndicatorStyle progressIndicatorStyle;
+  DialogStyle dialogStyle;
+  ActionSheetStyle actionSheetStyle;
+  DatePickerStyle datePickerStyle;
+
+
 
   final CupertinoWidgets _cupertinoWidgets = CupertinoWidgets();
   final MaterialWidgets _materialWidgets = MaterialWidgets();
 
-  Widget adaptiveSwitch({required SwitchProperties properties}) {
+  Widget adaptiveSwitch({required SwitchProperties properties,SwitchStyle? switchStyle}) {
     switch (Platform.isIOS) {
       case true:
-        return _cupertinoWidgets.customSwitch(properties);
+        return _cupertinoWidgets.customSwitch(properties,switchStyle ?? this.switchStyle);
       default:
-        return _materialWidgets.customSwitch(properties);
+        return _materialWidgets.customSwitch(properties,switchStyle ?? this.switchStyle);
     }
   }
 
-  Widget adaptiveIndicator({required ProgressIndicatorProperties properties}) {
+  Widget adaptiveIndicator({required ProgressIndicatorProperties properties,ProgressIndicatorStyle? progressIndicatorStyle}) {
     switch (Platform.isIOS) {
       case true:
-        return _cupertinoWidgets.customIndicator(properties);
+        return _cupertinoWidgets.customIndicator(properties,progressIndicatorStyle ?? this.progressIndicatorStyle);
       default:
-        return _cupertinoWidgets.customIndicator(properties);
+        return _materialWidgets.customIndicator(properties,progressIndicatorStyle ?? this.progressIndicatorStyle);
     }
   }
 
-  Future<T> adaptiveDialog({required DialogProperties properties}) async {
+  Future<T> adaptiveDialog({required DialogProperties properties,DialogStyle? dialogStyle}) async {
     switch (Platform.isIOS) {
       case true:
-        return await _cupertinoWidgets.customDialog(properties,_context);
+        return await _cupertinoWidgets.customDialog(properties,_context,dialogStyle ?? this.dialogStyle);
       default:
-        return await _cupertinoWidgets.customDialog(properties,_context);
+        return await _materialWidgets.customDialog(properties,_context,dialogStyle ?? this.dialogStyle);
     }
   }
 
-  Future<T> adaptiveActionSheet({required ActionSheetProperties properties}) async {
+  Future<T> adaptiveActionSheet({required ActionSheetProperties properties,ActionSheetStyle? actionSheetStyle}) async {
     switch (Platform.isIOS) {
       case true:
-        return await _cupertinoWidgets.customActionSheet(properties,_context);
+        return await _cupertinoWidgets.customActionSheet(properties,_context,actionSheetStyle ?? this.actionSheetStyle);
       default:
-        return await _cupertinoWidgets.customActionSheet(properties,_context);
+        return await _materialWidgets.customActionSheet(properties,_context,actionSheetStyle ?? this.actionSheetStyle);
+    }
+  }
+
+  Future<DateTime?> adaptiveDatePicker({required DatePickerProperties properties,DatePickerStyle? datePickerStyle}) async {
+    switch (Platform.isIOS) {
+      case true:
+        return await _cupertinoWidgets.customDatePicker(properties,_context,datePickerStyle ?? this.datePickerStyle);
+      default:
+        return await _materialWidgets.customDatePicker(properties,_context,datePickerStyle ?? this.datePickerStyle);
     }
   }
 
@@ -55,16 +74,7 @@ class NativeWidgets<T> {
       case true:
         return _cupertinoWidgets.customRefreshIndicator(properties);
       default:
-        return _cupertinoWidgets.customRefreshIndicator(properties);
-    }
-  }
-
-  Future<DateTime?> adaptiveDatePicker({required DatePickerProperties properties}) async {
-    switch (Platform.isIOS) {
-      case true:
-        return await _cupertinoWidgets.customDatePicker(properties,_context);
-      default:
-        return await _cupertinoWidgets.customDatePicker(properties,_context);
+        return _materialWidgets.customRefreshIndicator(properties);
     }
   }
 }

@@ -4,9 +4,11 @@ import '../export.dart';
 
 class CupertinoSwitchWidget extends StatelessWidget {
   final SwitchProperties properties;
+  final SwitchStyle? style;
   const CupertinoSwitchWidget({
     Key? key,
     required this.properties,
+    this.style
   }) : super(key: key);
 
 
@@ -17,9 +19,9 @@ class CupertinoSwitchWidget extends StatelessWidget {
       onChanged: properties.onChanged,
       value: properties.value,
       dragStartBehavior: properties.dragStartBehavior,
-      activeColor: properties.theme?.activeColor,
-      thumbColor: properties.theme?.thumbColor,
-      trackColor: properties.theme?.trackColor,
+      activeColor: style?.activeColor,
+      thumbColor: style?.thumbColor,
+      trackColor: style?.trackColor,
     );
   }
 }
