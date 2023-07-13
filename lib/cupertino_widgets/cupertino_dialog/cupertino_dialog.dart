@@ -15,14 +15,18 @@ class CupertinoDialog extends StatelessWidget {
     );
   }
 
-  Widget _title(){
+  Widget? _title(){
     switch (properties.dialogType) {
       case DialogType.normal:
       case DialogType.input:
-        return Text(
-          properties.title,
-          style: style?.titleStyle,
-        );
+        if(properties.title == null || (properties.title?.isEmpty ?? true)){
+          return null;
+        }else{
+          return Text(
+            properties.title ?? "",
+            style: style?.titleStyle,
+          );
+        }
       case DialogType.custom:
         return properties.customDialogProperties?.title ?? const Center();
     }
@@ -48,15 +52,22 @@ class CupertinoDialog extends StatelessWidget {
     }
   }
 
-  Widget _content() {
+  Widget? _content() {
     switch (properties.dialogType) {
       case DialogType.normal:
-        return Text(properties.message,style: style?.messageStyle);
+        if(properties.message == null || (properties.message?.isEmpty ?? true)){
+          return null;
+        }else{
+          return Text(
+            properties.message ?? "",
+            style: style?.messageStyle,
+          );
+        }
       case DialogType.input:
         return Column(
           children: [
             Text(
-              properties.message,
+              properties.message ?? "",
               style: style?.messageStyle,
             ),
             const SizedBox(

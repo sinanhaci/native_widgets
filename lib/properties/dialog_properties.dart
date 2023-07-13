@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import '../enums/dialog_type.dart';
 
 class DialogProperties {
-  String title;
-  String message;
+  String? title;
+  String? message;
   DialogButtonProperties okButton;
   DialogButtonProperties? cancelButton;
   DialogInputProperties? inputProperties;
@@ -11,8 +11,8 @@ class DialogProperties {
   CustomDialogProperties? customDialogProperties;
   DialogProperties({
     this.dialogType = DialogType.normal,
-    required this.title,
-    required this.message,
+    this.title,
+    this.message,
     required this.okButton,
     this.cancelButton,
     this.inputProperties,
