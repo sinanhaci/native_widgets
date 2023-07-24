@@ -14,6 +14,8 @@ class DatePickerProperties {
   DateTimePickerType? pickerType;
   bool use24hFormat;
   String okButtonText;
+  String? title;
+  
   DatePickerProperties({
     this.minimumDate,
     this.maximumDate,
@@ -24,7 +26,8 @@ class DatePickerProperties {
     required this.time,
     this.pickerType,
     this.use24hFormat = true,
-    this.okButtonText = "Ok"
+    this.okButtonText = "Ok",
+    this.title
   });
 }
 
@@ -33,9 +36,11 @@ class DatePickerStyle {
   Color? backgroundColor;
 ///  Only ios widget height.
   double height;
+  TextStyle? titleStyle;
   DatePickerStyle({
     this.backgroundColor,
-    this.height = 250
+    this.height = 300,
+    this.titleStyle
   });
   
 

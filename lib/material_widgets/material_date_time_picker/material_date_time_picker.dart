@@ -36,6 +36,7 @@ class MaterialDateTimePickerWidget {
       firstDate: properties.minimumDate ?? DateTime.parse(Constants.minimumDateTimeString),
       lastDate: properties.maximumDate ?? DateTime.parse(Constants.maximumDateTimeString),
       initialDatePickerMode: DatePickerMode.day,
+      helpText: properties.title,
     );
     if(result != null) properties.time = result;
     return result != null ? await _materialTimePicker() : null;
@@ -52,6 +53,7 @@ class MaterialDateTimePickerWidget {
       firstDate: properties.minimumDate ?? DateTime.parse(Constants.minimumDateTimeString),
       lastDate: properties.maximumDate ?? DateTime.parse(Constants.maximumDateTimeString),
       initialDatePickerMode: DatePickerMode.day,
+      helpText: properties.title,
     );
     if(result != null) properties.time = result;
     return result;
@@ -61,6 +63,7 @@ class MaterialDateTimePickerWidget {
     var result = await showTimePicker(
       context: context,
       initialTime: TimeOfDay(hour: properties.time.hour, minute: properties.time.minute),
+      helpText: properties.title,
       builder: (context, child) => MediaQuery(
         data: MediaQuery.of(context).copyWith(
           alwaysUse24HourFormat: true,
