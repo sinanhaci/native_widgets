@@ -52,7 +52,7 @@ class CupertinoDatePickerWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(properties.title ?? "",style: style?.titleStyle),
+                    Material(child: Center(child: Text(properties.title ?? "Deneme",style: style?.titleStyle))),
                     CupertinoButton(
                       padding: EdgeInsets.zero,
                       child: Text(properties.okButtonText),
