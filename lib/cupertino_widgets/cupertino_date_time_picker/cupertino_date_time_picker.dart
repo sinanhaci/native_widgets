@@ -17,7 +17,7 @@ class CupertinoDatePickerWidget extends StatelessWidget {
       child: Stack(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top:20.0),
+            padding: const EdgeInsets.only(top:30.0),
             child: CupertinoDatePicker(
               backgroundColor: style?.backgroundColor ?? theme.scaffoldBackgroundColor,
               maximumYear: properties.maximumYear ?? DateTime.now().year,
@@ -46,17 +46,20 @@ class CupertinoDatePickerWidget extends StatelessWidget {
                   )
                 )
               ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(properties.title ?? "",style: style?.titleStyle),
-                  CupertinoButton(
-                    padding: EdgeInsets.zero,
-                    child: Text(properties.okButtonText),
-                    onPressed: () => Navigator.pop(context, properties.time),
-                  ),
-                ],
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(properties.title ?? "",style: style?.titleStyle),
+                    CupertinoButton(
+                      padding: EdgeInsets.zero,
+                      child: Text(properties.okButtonText),
+                      onPressed: () => Navigator.pop(context, properties.time),
+                    ),
+                  ],
+                ),
               ),
             ),
           )
