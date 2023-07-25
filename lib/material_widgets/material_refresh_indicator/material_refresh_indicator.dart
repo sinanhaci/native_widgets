@@ -30,12 +30,14 @@ class MaterialRefreshIndicator extends StatelessWidget {
   Widget _listWiev(){
     if(properties.separatorBuilder == null){
       return ListView.builder(
+        physics: const AlwaysScrollableScrollPhysics(),
         controller: properties.controller,
         itemBuilder : properties.itemBuilder!,
         itemCount: properties.itemCount!,
       );
     }else{
       return ListView.separated(
+        physics: const AlwaysScrollableScrollPhysics(),
         separatorBuilder: properties.separatorBuilder!,
         controller: properties.controller,
         itemBuilder : properties.itemBuilder!,
