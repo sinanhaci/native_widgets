@@ -168,33 +168,41 @@ class AdaptiveWidgets extends StatelessWidget {
                   properties: ActionSheetProperties(
                     title: 'Title',
                     content: 'Content',
+                    androidShowCloseButton: true,
                     actions: [
                       ActionButton(
                         text: 'First Action',
                         onPress: (){},
-                        icon: Icons.add,
                         isDestructiveAction: true
                       ),
                       ActionButton(
                         text: 'Second Action',
                         onPress: (){},
-                        icon: Icons.add,
                         isDefaultAction: true
                       ),
                       ActionButton(
                         text: 'Second Action',
                         onPress: (){},
-                        icon: Icons.add,
                       ),
                       ActionButton(
                         text: 'Second Action',
                         onPress: (){},
-                        icon: Icons.add
                       ),
                       ActionButton(
                         text: 'Second Action',
                         onPress: (){},
-                        icon: Icons.add
+                      ),
+                      ActionButton(
+                        text: 'Second Action',
+                        onPress: (){},
+                      ),
+                      ActionButton(
+                        text: 'Second Action',
+                        onPress: (){},
+                      ),
+                      ActionButton(
+                        text: 'Second Action',
+                        onPress: (){},
                       ),
                     ]
                   ),

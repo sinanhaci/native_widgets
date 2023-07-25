@@ -4,10 +4,14 @@ class ActionSheetProperties {
   String? title;
   String? content;
   List<ActionButton> actions;
+  bool androidShowCloseButton;
+  Color? androidInfoTileColor;
   ActionSheetProperties({
     this.title,
     this.content,
     required this.actions,
+    this.androidShowCloseButton = false,
+    this.androidInfoTileColor
   });
 }
 
@@ -37,6 +41,7 @@ class ActionSheetStyle {
   TextStyle? isDestructiveActionStyle;
   Color? iconColor;
   double? iconSize;
+  VisualDensity? androidVisualDensity;
 
   ActionSheetStyle({
     this.titleStyle,
@@ -46,7 +51,8 @@ class ActionSheetStyle {
     this.isDefaultActionStyle,
     this.isDestructiveActionStyle,
     this.iconColor,
-    this.iconSize
+    this.iconSize,
+    this.androidVisualDensity
   });
 
   ActionSheetStyle copyWith({
