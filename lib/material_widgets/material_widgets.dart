@@ -48,7 +48,7 @@ class MaterialWidgets<T> extends WidgetsManager{
 
   @override
   Future<DateTime?> customDatePicker(DatePickerProperties properties,BuildContext context,DatePickerStyle style) async {
-    var dateTimePicker = MaterialDateTimePickerWidget(properties: properties, context: context);
+    var dateTimePicker = MaterialDateTimePickerWidget(properties: properties, context: context,style: style);
     return await dateTimePicker.materialDateTimePickerWidget();
   }
 }

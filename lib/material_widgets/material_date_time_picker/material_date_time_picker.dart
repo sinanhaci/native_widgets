@@ -5,10 +5,12 @@ import '../../properties/date_picker_properties.dart';
 
 class MaterialDateTimePickerWidget {
   final DatePickerProperties properties;
+  final DatePickerStyle style;
   final BuildContext context;
   MaterialDateTimePickerWidget({
     required this.properties,
-    required this.context
+    required this.context,
+    required this.style,
   });
 
 
@@ -29,7 +31,12 @@ class MaterialDateTimePickerWidget {
     DateTime? time = DateTime.now();
     var result = await showDatePicker(
       builder: ((context, child) {
-        return child!;
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: style.androidColorScheme 
+          ),  
+          child: child!,
+        );
       }),
       context: context,
       initialDate: properties.initialDateTime ?? time,
@@ -46,7 +53,12 @@ class MaterialDateTimePickerWidget {
   Future<DateTime?> _materialDatePicker()async{
     var result = await showDatePicker(
       builder: ((context, child) {
-        return child!;
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: style.androidColorScheme 
+          ),  
+          child: child!,
+        );
       }),
       context: context,
       initialDate: properties.initialDateTime ?? DateTime.now(),
@@ -68,7 +80,12 @@ class MaterialDateTimePickerWidget {
         data: MediaQuery.of(context).copyWith(
           alwaysUse24HourFormat: true,
         ),
-        child: child!,
+        child: Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: style.androidColorScheme 
+          ),  
+          child: child!,
+        ),
       ),
     );
     if(result != null) properties.time = DateTime(properties.time.year, properties.time.month, properties.time.day, result.hour, result.minute);

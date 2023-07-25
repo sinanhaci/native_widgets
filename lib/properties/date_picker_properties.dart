@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../enums/date_time_picker_type.dart';
 
@@ -37,10 +38,12 @@ class DatePickerStyle {
 ///  Only ios widget height.
   double height;
   TextStyle? titleStyle;
+  ColorScheme? androidColorScheme;
   DatePickerStyle({
     this.backgroundColor,
     this.height = 300,
-    this.titleStyle
+    this.titleStyle,
+    this.androidColorScheme
   });
   
 
