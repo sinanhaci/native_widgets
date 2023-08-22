@@ -13,6 +13,7 @@ class RefreshIndicatorProperties {
   ScrollViewKeyboardDismissBehavior keyboardDismissBehavior;
   ScrollBehavior? scrollBehavior;
   EdgeInsetsGeometry padding;
+  double androidEdgeOffset;
 
   RefreshIndicatorProperties({
     this.controller,
@@ -26,6 +27,7 @@ class RefreshIndicatorProperties {
     this.cacheExtent,
     this.keyboardDismissBehavior = ScrollViewKeyboardDismissBehavior.manual,
     this.scrollBehavior,
-    this.padding = EdgeInsets.zero
+    this.padding = EdgeInsets.zero,
+    this.androidEdgeOffset = 0.0
   });
 }

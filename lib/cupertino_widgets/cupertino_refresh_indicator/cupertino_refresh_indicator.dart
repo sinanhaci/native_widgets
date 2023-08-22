@@ -22,15 +22,15 @@ class CupertinoRefreshIndicator extends StatelessWidget {
             parent: AlwaysScrollableScrollPhysics(),
           ),
       slivers: <Widget>[
-        CupertinoSliverRefreshControl(
-          onRefresh: properties.onRefresh,
-        ),
         SliverPadding(
           padding: properties.padding,
-          sliver: SliverList(
-            delegate: _getDelegateByConstructors(),
+          sliver: CupertinoSliverRefreshControl(
+            onRefresh: properties.onRefresh,
           ),
         ),
+        SliverList(
+            delegate: _getDelegateByConstructors(),
+          )
       ],
     );
   }

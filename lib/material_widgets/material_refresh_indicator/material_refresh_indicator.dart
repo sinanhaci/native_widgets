@@ -9,6 +9,7 @@ class MaterialRefreshIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     _assert();
     return RefreshIndicator(
+      edgeOffset: properties.androidEdgeOffset,
       onRefresh: properties.onRefresh,
       child: _getChildByConstructors(),
     );
