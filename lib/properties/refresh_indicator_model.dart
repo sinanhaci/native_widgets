@@ -9,6 +9,10 @@ class RefreshIndicatorProperties {
   Widget Function(BuildContext, int)? itemBuilder;
   int? itemCount;
   bool shrinkWrap;
+  double? cacheExtent;
+  ScrollViewKeyboardDismissBehavior keyboardDismissBehavior;
+  ScrollBehavior? scrollBehavior;
+  EdgeInsetsGeometry padding;
 
   RefreshIndicatorProperties({
     this.controller,
@@ -18,6 +22,10 @@ class RefreshIndicatorProperties {
     this.itemBuilder,
     this.itemCount,
     this.shrinkWrap = false,
-    this.separatorBuilder
+    this.separatorBuilder,
+    this.cacheExtent,
+    this.keyboardDismissBehavior = ScrollViewKeyboardDismissBehavior.manual,
+    this.scrollBehavior,
+    this.padding = EdgeInsets.zero
   });
 }

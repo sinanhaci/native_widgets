@@ -19,6 +19,9 @@ class MaterialRefreshIndicator extends StatelessWidget {
       ListView(
         shrinkWrap: properties.shrinkWrap,
         controller: properties.controller,
+        cacheExtent: properties.cacheExtent,
+        keyboardDismissBehavior: properties.keyboardDismissBehavior,
+        padding: properties.padding,
         children: properties.children!,
       );
   }
@@ -30,18 +33,26 @@ class MaterialRefreshIndicator extends StatelessWidget {
   Widget _listWiev(){
     if(properties.separatorBuilder == null){
       return ListView.builder(
-        physics: const AlwaysScrollableScrollPhysics(),
+        physics: properties.physics ?? const AlwaysScrollableScrollPhysics(),
         controller: properties.controller,
         itemBuilder : properties.itemBuilder!,
         itemCount: properties.itemCount!,
+        cacheExtent: properties.cacheExtent,
+        keyboardDismissBehavior: properties.keyboardDismissBehavior,
+        shrinkWrap: properties.shrinkWrap,
+        padding: properties.padding,
       );
     }else{
       return ListView.separated(
-        physics: const AlwaysScrollableScrollPhysics(),
+        physics: properties.physics ?? const AlwaysScrollableScrollPhysics(),
         separatorBuilder: properties.separatorBuilder!,
         controller: properties.controller,
         itemBuilder : properties.itemBuilder!,
         itemCount: properties.itemCount!,
+        cacheExtent: properties.cacheExtent,
+        keyboardDismissBehavior: properties.keyboardDismissBehavior,
+        shrinkWrap: properties.shrinkWrap,
+        padding: properties.padding,
       );
     }
   }
