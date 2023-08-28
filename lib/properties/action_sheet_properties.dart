@@ -23,6 +23,7 @@ class ActionButton {
   bool isDefaultAction;
   IconData? icon;
   MainAxisAlignment mainAxisAlignment;
+  String? assetIcon;
   void Function() onPress;
   ActionButton({
     required this.text,
@@ -30,7 +31,8 @@ class ActionButton {
     this.isDefaultAction = false,
     required this.onPress,
     this.icon,
-    this.mainAxisAlignment = MainAxisAlignment.start
+    this.mainAxisAlignment = MainAxisAlignment.start,
+    this.assetIcon
   });
 }
 
