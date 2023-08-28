@@ -23,14 +23,17 @@ class CupertinoRefreshIndicator extends StatelessWidget {
           ),
       slivers: <Widget>[
         SliverPadding(
-          padding: properties.padding,
+          padding: properties.sliverPadding,
           sliver: CupertinoSliverRefreshControl(
             onRefresh: properties.onRefresh,
           ),
         ),
-        SliverList(
-            delegate: _getDelegateByConstructors(),
-          )
+        SliverPadding(
+          padding: properties.padding,
+          sliver: SliverList(
+              delegate: _getDelegateByConstructors(),
+            ),
+        )
       ],
     );
   }
