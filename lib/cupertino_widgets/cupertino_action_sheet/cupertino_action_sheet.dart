@@ -31,7 +31,7 @@ class CupertinoActionSheetWidget extends StatelessWidget {
             key: const Key('Default Button'),
             onPressed: () => Navigator.pop(context),
             isDefaultAction: true,
-            child: Text('Cancel',style: style?.buttonStyle),
+            child: Text(properties.defaultButtonText,style: style?.buttonStyle),
           );
        
   }

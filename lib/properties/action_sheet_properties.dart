@@ -6,12 +6,14 @@ class ActionSheetProperties {
   List<ActionButton> actions;
   bool androidShowCloseButton;
   Color? androidInfoTileColor;
+  String defaultButtonText;
   ActionSheetProperties({
     this.title,
     this.content,
     required this.actions,
     this.androidShowCloseButton = false,
-    this.androidInfoTileColor
+    this.androidInfoTileColor,
+    this.defaultButtonText = "Cancel"
   });
 }
 
