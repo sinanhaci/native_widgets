@@ -25,6 +25,7 @@ class ActionButton {
   MainAxisAlignment mainAxisAlignment;
   String? assetIcon;
   void Function() onPress;
+  bool isSelected;
   ActionButton({
     required this.text,
     this.isDestructiveAction = false,
@@ -32,7 +33,8 @@ class ActionButton {
     required this.onPress,
     this.icon,
     this.mainAxisAlignment = MainAxisAlignment.start,
-    this.assetIcon
+    this.assetIcon,
+    this.isSelected = false
   });
 }
 
