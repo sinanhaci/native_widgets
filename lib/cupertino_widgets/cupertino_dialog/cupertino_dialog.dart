@@ -74,7 +74,7 @@ class CupertinoDialog extends StatelessWidget {
               height: 10,
             ),
             CupertinoTextField(
-              enabled: properties.inputProperties?.enabled,
+              enabled: properties.inputProperties?.enabled ?? true,
               autofocus: properties.inputProperties?.autoFocus ?? false,
               decoration: properties.inputProperties?.iosDecoration,
               placeholder: properties.inputProperties?.hintText,
