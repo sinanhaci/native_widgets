@@ -39,10 +39,11 @@ class CupertinoDatePickerWidget extends StatelessWidget {
             left: 0,
             child: Container(
               height: 40,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
+                color: style?.titleBackgroundColor,
                 border: Border(
                   bottom: BorderSide(
-                    color: Colors.black26
+                    color: style?.borderColor ?? Colors.black26
                   )
                 )
               ),
@@ -52,7 +53,16 @@ class CupertinoDatePickerWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Material(child: Center(child: Text(properties.title ?? "Deneme",style: style?.titleStyle))),
+                    Material(
+                      elevation: 0,
+                      color: Colors.transparent,
+                      child: Center(
+                        child: Text(
+                          properties.title ?? "",
+                          style: style?.titleStyle,
+                        ),
+                      ),
+                    ),
                     CupertinoButton(
                       padding: EdgeInsets.zero,
                       child: Text(properties.okButtonText),

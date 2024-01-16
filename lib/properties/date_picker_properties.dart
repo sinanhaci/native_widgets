@@ -35,6 +35,9 @@ class DatePickerProperties {
 class DatePickerStyle {
 ///  Only ios background color.
   Color? backgroundColor;
+  Color? titleBackgroundColor;
+  Color? borderColor;
+
 ///  Only ios widget height.
   double height;
   TextStyle? titleStyle;
@@ -43,7 +46,9 @@ class DatePickerStyle {
     this.backgroundColor,
     this.height = 300,
     this.titleStyle,
-    this.androidColorScheme
+    this.androidColorScheme,
+    this.titleBackgroundColor,
+    this.borderColor
   });
   
 
