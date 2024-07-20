@@ -40,7 +40,7 @@ class MaterialDialog extends StatelessWidget {
     switch (constructors.dialogType) {
       case DialogType.ok:
       case DialogType.okCancel:
-        return Text(constructors.content,style: theme.textTheme.headline6!,);
+        return Text(constructors.content);
       case DialogType.inputOk:
       case DialogType.inputOkCancel:
         return Column(
@@ -49,7 +49,7 @@ class MaterialDialog extends StatelessWidget {
           children: [
             Text(
               constructors.content,
-              style: theme.textTheme.headline6!,
+              
             ),
             const SizedBox(
               height: 10,
